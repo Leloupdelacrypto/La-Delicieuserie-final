@@ -1,0 +1,360 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.querySelector('#navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navAnchors = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+
+    navAnchors.forEach((anchor) => {
+      anchor.addEventListener('click', () => {
+        if (window.innerWidth <= 960) {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+    
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+  }
+
+  const yearSpan = document.getElementById('current-year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear().toString();
+
+  const track = document.querySelector('.slider__track');
+  const slides = track ? Array.from(track.querySelectorAll('.testimonial')) : [];
+  const prevBtn = document.querySelector('[data-direction="prev"]');
+  const nextBtn = document.querySelector('[data-direction="next"]');
+  let currentIndex = 0;
+  let autoplayId;
+
+  const isDesktop = () => window.innerWidth > 960;
+
+  const updateSlider = () => {
+    if (!track || slides.length === 0) return;
+    const slide = slides[0];
+    const slideStyle = window.getComputedStyle(slide);
+    const slideWidth = slide.offsetWidth;
+    const gap = parseFloat(slideStyle.marginRight || '0');
+    const offset = (slideWidth + gap) * currentIndex;
+    track.style.transform = `translateX(-${offset}px)`;
+  };
+
+  const goToSlide = (index) => {
+    if (slides.length === 0) return;
+    const lastIndex = slides.length - 1;
+    if (index < 0) currentIndex = lastIndex;
+    else if (index > lastIndex) currentIndex = 0;
+    else currentIndex = index;
+    updateSlider();
+  };
+
+  const startAutoplay = () => {
+    if (!isDesktop() || slides.length <= 1) { stopAutoplay(); return; }
+    stopAutoplay();
+    autoplayId = window.setInterval(() => goToSlide(currentIndex + 1), 6000);
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayId) { window.clearInterval(autoplayId); autoplayId = undefined; }
+  };
+
+  if (prevBtn && nextBtn && slides.length > 1) {
+    prevBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex - 1); 
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+    nextBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex + 1); 
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+
+    if (track) {
+      track.addEventListener('mouseenter', stopAutoplay);
+      track.addEventListener('mouseleave', startAutoplay);
+    }
+    prevBtn.addEventListener('mouseenter', stopAutoplay);
+    nextBtn.addEventListener('mouseenter', stopAutoplay);
+    prevBtn.addEventListener('mouseleave', startAutoplay);
+    nextBtn.addEventListener('mouseleave', startAutoplay);
+
+    window.addEventListener('resize', () => {
+      if (!isDesktop()) {
+        stopAutoplay(); currentIndex = 0;
+        if (track) track.style.transform = 'translateX(0)';
+      } else {
+        updateSlider(); startAutoplay();
+      }
+    
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
+
+    updateSlider();
+    startAutoplay();
+  }
+
+  // Product slider
+  const prodTrack = document.querySelector('.prod-track');
+  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
+  const btnPrev = document.querySelector('[data-prod="prev"]');
+  const btnNext = document.querySelector('[data-prod="next"]');
+  const dots = Array.from(document.querySelectorAll('.prod-dot'));
+  let pIndex = 0;
+
+  function updateProd() {
+    if (!prodTrack || prodCards.length === 0) return;
+    const slide = prodCards[0];
+    const style = window.getComputedStyle(slide);
+    const w = slide.offsetWidth;
+    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const offset = (w + gap) * pIndex;
+    prodTrack.style.transform = `translateX(-${offset}px)`;
+    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
+  }
+  function gotoProd(i) {
+    if (prodCards.length === 0) return;
+    const last = prodCards.length - 1;
+    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
+    updateProd();
+  }
+  if (btnPrev && btnNext && prodCards.length) {
+    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
+    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
+    window.addEventListener('resize', updateProd);
+    updateProd();
+  }
+
+});
