@@ -8,40 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
-    
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
+    });
 
     navAnchors.forEach((anchor) => {
       anchor.addEventListener('click', () => {
@@ -49,119 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
           navLinks.classList.remove('open');
           navToggle.setAttribute('aria-expanded', 'false');
         }
-      
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
-    
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
+      });
+    });
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) {
         navLinks.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       }
-    
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
+    });
   }
 
   const yearSpan = document.getElementById('current-year');
   if (yearSpan) yearSpan.textContent = new Date().getFullYear().toString();
 
+  // Testimonials slider
   const track = document.querySelector('.slider__track');
   const slides = track ? Array.from(track.querySelectorAll('.testimonial')) : [];
   const prevBtn = document.querySelector('[data-direction="prev"]');
@@ -201,74 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (prevBtn && nextBtn && slides.length > 1) {
-    prevBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex - 1); 
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
-    nextBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex + 1); 
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
+    prevBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex - 1); });
+    nextBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex + 1); });
 
     if (track) {
       track.addEventListener('mouseenter', stopAutoplay);
@@ -286,40 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         updateSlider(); startAutoplay();
       }
-    
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-
-});
+    });
 
     updateSlider();
     startAutoplay();
@@ -338,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slide = prodCards[0];
     const style = window.getComputedStyle(slide);
     const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 16; // add small spacing
+    const gap = parseFloat(style.marginRight || '0') + 12;
     const offset = (w + gap) * pIndex;
     prodTrack.style.transform = `translateX(-${offset}px)`;
     dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
@@ -356,5 +126,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateProd);
     updateProd();
   }
-
 });
