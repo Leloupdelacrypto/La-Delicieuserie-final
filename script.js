@@ -303,26 +303,6 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-
-// ===== Reviews Masonry (JSON) =====
-document.addEventListener('DOMContentLoaded', () => { try { initManualReviews(); } catch(e){} });
-
-async function initManualReviews(){
-  const target = document.getElementById('manual-reviews') || document.querySelector('#temoignages .reviews-masonry');
-  if(!target) return;
-  const reviews = await fetchJsonSafe('assets/data/reviews.json');
-  if(!reviews || !reviews.length){
-    target.insertAdjacentHTML('beforeend','<p>Aucun avis à afficher pour le moment.</p>');
-    return;
-  }
-  const items = reviews.slice(0, 24);
-  target.innerHTML = items.map(renderReviewCard).join('') + `
-    <div class="reviews-attrib">
-      <span>Source : Google</span>
-      <a href="https://www.google.com/search?q=La+Délicieuserie+Calais+avis" target="_blank" rel="noopener">Voir plus d’avis</a>
-    </div>`;
-}
-
 function renderReviewCard(rv){
   const name  = escapeHtml(rv.author || 'Client Google');
   const text  = escapeHtml(rv.text || '');
@@ -330,6 +310,7 @@ function renderReviewCard(rv){
   const rating = clamp(parseInt(rv.rating, 10) || 0, 0, 5);
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
   const starsHtml = stars.split('').map(ch => `<span class="${ch==='★'?'star--on':'star--off'}">${ch}</span>`).join('');
+  const link = rv.url ? `<div class="review-linkwrap"><a class="review-link" href="${escapeAttr(rv.url)}" target="_blank" rel="noopener">Voir l’avis</a></div>` : ``;
   return `
     <article class="review-card">
       <div class="review-head">
@@ -340,10 +321,7 @@ function renderReviewCard(rv){
         </div>
       </div>
       <p class="review-text">${text}</p>
+      ${link}
     </article>`;
 }
-
-function formatDate(iso){ if(!iso) return ''; try{ const d=new Date(iso); if(Number.isNaN(d.getTime())) return ''; return d.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'});}catch{return '';} }
-function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
-function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-async function fetchJsonSafe(url){ try{ const r=await fetch(url,{cache:'no-store'}); if(!r.ok) return null; return await r.json(); }catch{ return null; } }
+function escapeAttr(s){return (s||'').replace(/["'<>&]/g, m=>({'"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;','&':'&amp;'}[m]));}

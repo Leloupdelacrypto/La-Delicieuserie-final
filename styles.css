@@ -470,24 +470,7 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
 }
 
 
-/* ===== Reviews Masonry (JSON) ===== */
-.reviews-masonry{column-count:3;column-gap:1rem;}
-@media (max-width: 1024px){.reviews-masonry{column-count:2;}}
-@media (max-width: 640px){.reviews-masonry{column-count:1;}}
-.reviews-masonry .review-card{
-  display:inline-block;width:100%;margin:0 0 1rem;break-inside:avoid;
-  background: var(--color-surface, #fff);
-  border-radius: var(--radius-lg, 16px);
-  box-shadow: var(--shadow-soft, 0 24px 60px rgba(27,33,20,.12));
-  padding: 1rem 1.1rem;
-}
-.review-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;}
-.review-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;background:rgba(0,0,0,.05);}
-.review-author{font-weight:700;}
-.review-meta{color:var(--color-muted, #6f6b67);font-size:.9rem;}
-.review-text{margin-top:.4rem;line-height:1.55;}
-.stars{font-size:.95rem;}
-.star--on{color:#f5b301;}
-.star--off{color:#d6d3cd;}
-.reviews-attrib{margin-top:.75rem;font-size:.9rem;color:var(--color-muted, #6f6b67);display:inline-flex;align-items:center;gap:.5rem;}
-.reviews-attrib a{text-decoration:underline;}
+/* Link under each review */
+.review-linkwrap{ margin-top: .5rem; }
+.review-link{ font-size:.9rem; text-decoration: underline; color: var(--color-accent, #e7b997); }
+.review-link:hover, .review-link:focus{ color: var(--color-primary-dark, #4c5a45); }
