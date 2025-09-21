@@ -347,7 +347,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(!res.ok) throw new Error('HTTP '+res.status);
       return await res.json();
     }catch(e){
-      console.warn('Reviews load failed:', e);
+      // Try inline <script id="reviewsData"> as fallback
+      try{
+        const node = document.getElementById('reviewsData');
+        if (node){
+          const txt = (node.textContent||'').trim();
+          if (txt) return JSON.parse(txt);
+        }
+      }catch(_){}
       return [];
     }
   }
