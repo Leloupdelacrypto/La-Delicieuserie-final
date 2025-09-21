@@ -226,7 +226,7 @@ const fbReviews = [
   { name: "Alexandre", text: "Livraison rapide, résultat au-delà de nos attentes. On repassera commande !" }
 ];
 
-(function injectFacebookReviews_disabled(){
+(function injectFacebookReviews(){
   const track = document.querySelector('.testimonials .slider__track');
   if (!track) return;
   track.innerHTML = '';
@@ -325,60 +325,3 @@ function renderReviewCard(rv){
     </article>`;
 }
 function escapeAttr(s){return (s||'').replace(/["'<>&]/g, m=>({'"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;','&':'&amp;'}[m]));}
-
-
-
-/* ===== v27p4 — Reviews Masonry fed from assets/data/reviews.json ===== */
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('reviewsMasonry');
-  if (!container) return;
-
-  const starStr = (n) => {
-  let html = "";
-  for (let i = 1; i <= 5; i++) {
-    html += `<span class="${i <= n ? "star filled" : "star empty"}">${i <= n ? "★" : "☆"}</span>`;
-  }
-  return html;
-};
-
-  async function loadJson(){
-    try{
-      const res = await fetch('assets/data/reviews.json', {cache:'no-store'});
-      if(!res.ok) throw new Error('HTTP '+res.status);
-      return await res.json();
-    }catch(e){
-      // Fallback: try window.fbReviews if defined
-      if (Array.isArray(window.fbReviews)){
-        return window.fbReviews.map(r => ({
-          author: r.name || 'Anonyme',
-          text: r.text || '',
-          rating: r.rating || 5,
-          date: '',
-          source: 'Facebook',
-          url: ''
-        }));
-      }
-      console.warn('Reviews load failed:', e);
-      return [];
-    }
-  }
-
-  const reviews = await loadJson();
-  container.innerHTML = '';
-  reviews.forEach(({author, text, rating=5, date='', source='Google', url=''}) => {
-    const fig = document.createElement('figure');
-    fig.className = 'review-card';
-    const safeText = text;
-    const sourceHtml = url ? `<span class="review-source"><a href="${url}" target="_blank" rel="noopener">Voir l’avis sur ${source}</a></span>` : `<span class="review-source">${source}</span>`;
-    fig.innerHTML = `
-      <blockquote>“${safeText}”</blockquote>
-      <figcaption class="review-meta">
-        <span class="review-author">${author}</span>
-        <span class="review-stars" aria-label="${rating} sur 5">${starStr(Number(rating)||5)}</span>
-        ${date ? `<time datetime="${date}">${date}</time>` : ''}
-        ${sourceHtml}
-      </figcaption>
-    `;
-    container.appendChild(fig);
-  });
-});
