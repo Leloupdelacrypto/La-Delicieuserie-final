@@ -333,7 +333,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('reviewsMasonry');
   if (!container) return;
 
-  const starStr = (n) => '★'.repeat(n) + '☆'.repeat(Math.max(0, 5-n));
+  const starStr = (n) => {
+  let html = "";
+  for (let i = 1; i <= 5; i++) {
+    html += `<span class="${i <= n ? "star filled" : "star empty"}">${i <= n ? "★" : "☆"}</span>`;
+  }
+  return html;
+};
 
   async function loadJson(){
     try{
