@@ -167,18 +167,19 @@
   </section>
 
   <section class="testimonials" id="temoignages" aria-labelledby="testimonials-title">
-    <div class="container">
-      <div class="section-intro">
-        <h2 id="testimonials-title" class="section-title">Ils en parlent</h2>
-        <p class="section-subtitle">Des retours qui nous motivent au quotidien</p>
-      </div>
-      <div class="testimonials__slider" role="region" aria-live="polite">
-        <button class="slider__control" data-direction="prev" aria-label="Témoignage précédent">&#10094;</button>
-        <div class="slider__track"><!-- slides injected by script.js (fbReviews) --></div>
-        <button class="slider__control" data-direction="next" aria-label="Témoignage suivant">&#10095;</button>
-      </div>
+  <div class="container">
+    <div class="section-intro">
+      <h2 id="testimonials-title" class="section-title">Ils en parlent</h2>
+      <p class="section-subtitle">Des retours qui nous motivent au quotidien</p>
     </div>
-  </section>
+
+    <!-- Masonry Grid for Reviews -->
+    <div class="reviews-masonry" id="reviewsMasonry" aria-live="polite">
+      <!-- Cards injected by script.js from assets/data/reviews.json -->
+      <noscript>Activez JavaScript pour afficher les avis.</noscript>
+    </div>
+  </div>
+</section>
 
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="container contact__grid">

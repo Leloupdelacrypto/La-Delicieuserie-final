@@ -474,3 +474,45 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
 .review-linkwrap{ margin-top: .5rem; }
 .review-link{ font-size:.9rem; text-decoration: underline; color: var(--color-accent, #e7b997); }
 .review-link:hover, .review-link:focus{ color: var(--color-primary-dark, #4c5a45); }
+
+
+
+/* ===== Masonry Reviews ===== */
+.reviews-masonry{
+  column-width: 300px;
+  column-gap: 1rem;
+}
+@media (max-width: 900px){
+  .reviews-masonry{ column-width: 260px; }
+}
+@media (max-width: 640px){
+  .reviews-masonry{ column-width: 220px; }
+}
+.review-card{
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.1rem;
+  margin: 0 0 1rem 0;
+}
+.review-card blockquote{
+  margin: 0 0 .75rem 0;
+  font-style: italic;
+}
+.review-meta{
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+  font-size:.9rem;
+  color: var(--color-muted);
+}
+.review-author{ font-weight: 600; color: var(--color-text); }
+.review-source a{
+  text-decoration: underline;
+  word-break: break-all;
+}
+.review-stars{ letter-spacing: .05em; }
