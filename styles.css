@@ -537,3 +537,43 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
 @media (max-width: 768px){
   .top-banner{ display:none; }
 }
+
+
+
+/* v27p15: Reduce space before "Pourquoi choisir La Délicieuserie ?" */
+.hero{
+  /* shorter hero */
+  min-height: 36vh;
+  margin: 0 0 0.6rem;
+}
+@media (max-width: 1024px){
+  .hero{ min-height: 42vh; }
+}
+@media (max-width: 640px){
+  .hero{ min-height: 48vh; }
+}
+
+/* tighten the next section */
+.highlights{ padding-top: 1.5rem; } /* was 3rem */
+
+
+
+/* v27p16: Ultra-tight space before "Pourquoi choisir" */
+.hero{
+  min-height: 24vh;
+  margin: 0;
+}
+.hero__content{
+  /* reduce vertical padding significantly */
+  padding: clamp(0.75rem,3vw,1.5rem) clamp(0.8rem,3vw,1.2rem);
+}
+@media (max-width: 1024px){
+  .hero{ min-height: 28vh; }
+}
+@media (max-width: 640px){
+  .hero{ min-height: 32vh; }
+}
+
+/* Next section spacing almost zero */
+.highlights{ padding-top: 0.25rem; }
+.section-title{ margin-top: 0.2rem; }
