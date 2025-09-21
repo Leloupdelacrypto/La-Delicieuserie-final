@@ -1,5 +1,6 @@
 
 :root{
+  --color-brand-orange:#F29E5C;
   --font-heading: "Playfair Display", serif;
   --font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-primary: #6a9fd2;
@@ -101,8 +102,8 @@ a{color:inherit;text-decoration:none}
 .testimonials__slider{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.5rem}
 .slider__track{display:flex;transition:transform .5s ease;scroll-behavior:smooth}
 .testimonial{background:var(--color-surface);border-radius:var(--radius-lg);padding:1.4rem;margin-right:.75rem;min-width:clamp(260px,80vw,520px);box-shadow:var(--shadow-soft)}
-.slider__control{background:var(--color-primary);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.4rem}
-.slider__control:hover{background:var(--color-primary-dark)}
+.slider__control{background:var(--color-primary);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.4rem z-index: 20; }
+.slider__control:hover{background:var(--color-primary-dark) z-index: 20; }
 
 .contact{padding:3rem 0 4rem}
 .contact__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;align-items:start}
@@ -136,7 +137,7 @@ a{color:inherit;text-decoration:none}
   .hero{min-height:48vh}
   .about__wrapper{grid-template-columns:1fr}
   .testimonials__slider{grid-template-columns:1fr}
-  .slider__control{display:none}
+  .slider__control{display:none z-index: 20; }
   .slider__track{overflow-x:auto;scroll-snap-type:x mandatory}
   .testimonial{scroll-snap-align:start}
 }
@@ -172,10 +173,321 @@ a{color:inherit;text-decoration:none}
 }
 
 /* Contrôles sliders : hover orange */
-.slider__control:hover{ background: var(--color-accent); }
+.slider__control:hover{ background: var(--color-accent);  z-index: 20; }
 
 /* Icônes contact : fond légèrement orangé pour harmoniser */
 .contact__icon{ background: rgba(242,158,92,.14); }
 
 /* Lien de nav : soulignement orange au survol */
 .nav-links a:hover::after,.nav-links a:focus::after{ background: var(--color-accent); }
+
+
+/* --- Patch: logo plus grand dans le bandeau --- */
+.brand{ padding-block: 0; height: 86px; }
+.brand img{ height: 100%; width: auto; display: block; }
+
+/* --- Patch: boutons plus gros --- */
+.btn--lg{ font-size:1.12rem; padding:1.1rem 2.4rem; border-width:2px; }
+
+/* --- Patch: visibilité bouton 'Découvrir nos sablés' --- */
+.btn--prominent{ box-shadow: 0 14px 28px rgba(0,0,0,.12); transform: translateY(0); }
+.btn--prominent:hover{ transform: translateY(-2px); box-shadow: 0 22px 36px rgba(0,0,0,.16); }
+
+/* --- Patch: controls au-dessus des images --- */
+.carousel__control{ position:absolute; top:50%; transform:translateY(-50%); z-index:20; }
+
+
+/* --- Patch v14: 'Nos sablés' layout side-by-side on desktop, responsive on mobile/tablet --- */
+.carousels{
+  display:grid;
+  gap:2rem;
+}
+
+/* Tablet: try 2 columns when space allows, while keeping readability */
+@media (min-width: 720px){
+  .carousels{
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+/* Desktop enhancements */
+@media (min-width: 1024px){
+  .carousels{
+    grid-template-columns: 1fr 1fr;
+  }
+  .carousel{
+    height:100%;
+  }
+  .carousel__slide{
+    height: 320px; /* a bit taller on desktop */
+  }
+}
+
+/* Small screens: keep single column and comfortable media size */
+@media (max-width: 719px){
+  .carousel__slide{
+    height: 240px;
+  }
+}
+
+
+/* --- Patch v15: hide any rogue nav control inside hero (defensive) --- */
+.hero .slider__control,
+.hero .carousel__control{
+  display: none !important;
+}
+
+/* Orange title only for 'Nos sablés' section */
+
+
+/* --- Patch v16: kill rogue arrows over hero & stacking contexts --- */
+.site-header, .hero{ position: relative; z-index: 2; }
+.testimonials, .produits{ position: relative; z-index: 1; }
+.site-header .slider__control,
+.site-header .carousel__control{ display: none !important; }
+
+/* Orange brand CTA */
+.btn--brand-orange{ background: var(--color-brand-orange); color:#fff; border:none; box-shadow:0 16px 30px rgba(242,158,92,.22); }
+.btn--brand-orange:hover, .btn--brand-orange:focus{ transform: translateY(-2px); box-shadow:0 22px 40px rgba(242,158,92,.28); }
+
+
+/* --- Patch v18: style embed avis Facebook --- */
+.fb-reviews{ margin-top: 2rem; }
+.fb-reviews__title{ font-family: var(--font-heading); color: var(--color-primary-dark); margin-bottom: .75rem; }
+.fb-reviews__cta{ margin-top: 1rem; }
+.fb-page{ margin-inline:auto; }
+
+/* --- v19: Force 'Nos Sablés' title to brand blue --- */
+section
+
+/* --- v19: header logo slightly larger --- */
+.navbar .brand{ height: 96px; padding-block: 0; }
+.navbar .brand img{ height: 100%; width: auto; display:block; }
+@media (max-width: 640px){
+  .navbar .brand{ height: 80px; }
+}
+
+/* --- v19: fb-page responsiveness --- */
+.fb-page{ max-width: 100%; }
+
+/* --- v20: icons for contact list --- */
+.contact__list img.icon{
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+
+/* --- v21: CTA contact direct orange in CTA section --- */
+.cta .btn[href^="mailto:"]{
+  background: var(--color-brand-orange) !important;
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 16px 30px rgba(242,158,92,.22);
+}
+.cta .btn[href^="mailto:"]:hover,
+.cta .btn[href^="mailto:"]:focus{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px rgba(242,158,92,.28);
+}
+
+/* --- v21: ensure 'Nos Sablés' title is brand blue --- */
+section.produits .section-title{ color: var(--color-primary-dark) !important; }
+
+/* v22: larger logo block */
+.navbar .brand{ height: 110px; padding-block: 0; }
+.navbar .brand img{ height: 100%; width: auto; display:block; }
+@media (max-width: 640px){
+  .navbar .brand{ height: 88px; }
+}
+
+
+/* --- v23: fixed aesthetic navbar on site background --- */
+.navbar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  background: var(--color-background);
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.site-header{ padding-top: 0; }
+@media (min-width: 961px){
+  main{ padding-top: 140px; }
+}
+@media (max-width: 960px){
+  main{ padding-top: 120px; }
+}
+
+/* v23: ensure mobile dropdown positions under fixed bar */
+.navbar .nav-links{
+  top: calc(100% + 12px);
+}
+
+/* ==== v23.3 header/menu fixes ==== */
+.site-header { position: relative; z-index: 10; }
+.site-header .navbar, .navbar{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 3000;
+  background: rgba(248,246,241,0.62); /* site bg with transparency */
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-radius: 0 0 16px 16px; /* rounded bottom corners */
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);
+}
+
+/* Desktop: links inline INSIDE the bar */
+@media (min-width: 961px){
+  .navbar .nav-links{
+    position: static !important;
+    display: flex !important;
+    align-items: center;
+    gap: 1.5rem;
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .nav-toggle{ display: none !important; }
+  /* Ensure layout has room under fixed bar */
+  main{ padding-top: 130px; }
+}
+
+/* Mobile: dropdown anchored under bar and ABOVE hero */
+@media (max-width: 960px){
+  main{ padding-top: 110px; }
+  .navbar .nav-links{
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 16px;
+    z-index: 3100;
+    background: rgba(248,246,241,0.96);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    min-width: 240px;
+    opacity: 0; visibility: hidden; transform: scale(.98);
+    transition: .2s ease;
+  }
+  .navbar .nav-links.open{ opacity: 1; visibility: visible; transform: scale(1); }
+  .nav-toggle{ display: flex; }
+}
+
+/* Make sure hero is under the bar */
+.hero{ position: relative; z-index: 0; }
+
+/* Round logo inside circle */
+.brand img{
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  outline: 3px solid rgba(255,255,255,0.9);
+  outline-offset: 0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* Contact icons flat (no colored circle) */
+.contact__icon{ background: transparent !important; border-radius: 0 !important; width: auto; height: auto; margin: 0 .5rem 0 0; display: inline-flex; align-items: center; justify-content: center; }
+.contact__list img.icon{ width: 22px; height: 22px; margin-right: 8px; vertical-align: middle; display: inline-block; }
+.contact__list li{ display: flex; align-items: center; gap: .35rem; }
+
+/* ===== v27 fix — Sticky header + z-index + transparence ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 3000;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(8px);
+}
+.navbar { position: relative; z-index: 3100; }
+.nav-links { z-index: 3500; }
+.hero { position: relative; z-index: 1; }
+
+/* ===== v27 fix — Lightbox (zoom) ===== */
+.lb {
+  position: fixed; inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 4000;
+  padding: clamp(12px, 3vw, 32px);
+}
+.lb.is-open { display: flex; }
+.lb__img {
+  max-width: min(92vw, 1100px);
+  max-height: 78vh;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+.lb__cap { margin-top: .8rem; color: #fff; text-align: center; opacity: .9; }
+.lb__close {
+  position: absolute; top: 12px; right: 12px;
+  width: 42px; height: 42px; border-radius: 999px;
+  background: rgba(0,0,0,.45); color: #fff;
+  font-size: 28px; line-height: 42px; border: none; cursor: pointer;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.lb__close:hover { background: rgba(0,0,0,.6); }
+
+.accent-orange{color:var(--color-orange);font-weight:700}
+
+/* v27p2: masquer la légende dans la lightbox */
+.lb__cap{display:none!important}
+
+/* v27p2: pas de flèches/points dans 'Nos sablés' */
+.carousels .carousel__control, .carousels .carousel__dots{display:none!important}
+
+/* v27p3 — corrections mobile */
+@media (max-width: 960px){
+  /* Lightbox: masquer toute légende potentielle sur mobile */
+  .lb__cap,
+  .lb figcaption,
+  .lb [class*="cap"],
+  .lb [data-lb-caption]{
+    display: none !important;
+  }
+
+  /* Nos sablés (carrousels) : supprimer flèches et marqueurs */
+  .carousels .carousel__control,
+  .carousels .slider__control,
+  .carousels [data-direction],
+  .carousels .carousel__dots,
+  .carousels .dots,
+  .carousels [class*="dot"]{
+    display: none !important;
+  }
+}
+
+
+/* ===== Reviews Masonry (JSON) ===== */
+.reviews-masonry{column-count:3;column-gap:1rem;}
+@media (max-width: 1024px){.reviews-masonry{column-count:2;}}
+@media (max-width: 640px){.reviews-masonry{column-count:1;}}
+.reviews-masonry .review-card{
+  display:inline-block;width:100%;margin:0 0 1rem;break-inside:avoid;
+  background: var(--color-surface, #fff);
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: var(--shadow-soft, 0 24px 60px rgba(27,33,20,.12));
+  padding: 1rem 1.1rem;
+}
+.review-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;}
+.review-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;background:rgba(0,0,0,.05);}
+.review-author{font-weight:700;}
+.review-meta{color:var(--color-muted, #6f6b67);font-size:.9rem;}
+.review-text{margin-top:.4rem;line-height:1.55;}
+.stars{font-size:.95rem;}
+.star--on{color:#f5b301;}
+.star--off{color:#d6d3cd;}
+.reviews-attrib{margin-top:.75rem;font-size:.9rem;color:var(--color-muted, #6f6b67);display:inline-flex;align-items:center;gap:.5rem;}
+.reviews-attrib a{text-decoration:underline;}

@@ -127,3 +127,223 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProd();
   }
 });
+
+
+/* ===== Generic image carousels (Pros & Particuliers) ===== */
+(function(){
+  const carousels = document.querySelectorAll('.carousel');
+  carousels.forEach((root) => {
+    const track = root.querySelector('.carousel__track');
+    const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
+    const prev = root.querySelector('[data-dir="prev"]');
+    const next = root.querySelector('[data-dir="next"]');
+    const dots = root.querySelector('.carousel__dots');
+    let index = 0;
+
+    const update = () => {
+      if (!track || !slides.length) return;
+      const width = slides[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${index * width}px)`;
+      if (dots){
+        [...dots.children].forEach((el, i) => el.setAttribute('aria-current', i===index ? 'true' : 'false'));
+      }
+    };
+
+    const goto = (i) => {
+      const last = slides.length - 1;
+      if (i < 0) index = last;
+      else if (i > last) index = 0;
+      else index = i;
+      update();
+    };
+
+    if (dots){
+      dots.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Aller à l’image ' + (i+1));
+        b.addEventListener('click', () => goto(i));
+        dots.appendChild(b);
+      });
+    }
+
+    prev && prev.addEventListener('click', () => goto(index - 1));
+    next && next.addEventListener('click', () => goto(index + 1));
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
+
+
+/* v16 carousel independence: safer width and scoping */
+document.querySelectorAll('.carousel').forEach((root) => {
+  const viewport = root.querySelector('.carousel__viewport');
+  const track = root.querySelector('.carousel__track');
+  const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
+  const prev = root.querySelector('[data-dir="prev"]');
+  const next = root.querySelector('[data-dir="next"]');
+  const dots = root.querySelector('.carousel__dots');
+  let index = 0;
+
+  function slideWidth(){
+    return viewport ? viewport.clientWidth : (slides[0]?.getBoundingClientRect().width || 0);
+  }
+  function update(){
+    if (!track || !slides.length) return;
+    track.style.transform = `translateX(-${index * slideWidth()}px)`;
+    if (dots){
+      [...dots.children].forEach((el,i)=> el.setAttribute('aria-current', i===index ? 'true':'false'));
+    }
+  }
+  function goto(i){
+    const last = slides.length - 1;
+    if (i < 0) index = last;
+    else if (i > last) index = 0;
+    else index = i;
+    update();
+  }
+  if (dots){
+    dots.innerHTML = '';
+    slides.forEach((_,i)=>{
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Aller à l’image '+(i+1));
+      b.addEventListener('click', ()=> goto(i));
+      dots.appendChild(b);
+    });
+  }
+  prev && prev.addEventListener('click', ()=> goto(index-1));
+  next && next.addEventListener('click', ()=> goto(index+1));
+  window.addEventListener('resize', update);
+  update();
+});
+
+
+/* v22: Facebook reviews (manual list, copy/paste from public page) */
+const fbReviews = [
+  { name: "Camille", text: "Des sablés magnifiques et délicieux ! Service impeccable, je recommande à 100%." },
+  { name: "Thomas", text: "Personnalisation parfaite pour notre événement pro, invités conquis. Merci La Délicieuserie !" },
+  { name: "Julie", text: "Un vrai coup de cœur. Équipe à l’écoute et biscuits sublimes." },
+  { name: "Alexandre", text: "Livraison rapide, résultat au-delà de nos attentes. On repassera commande !" }
+];
+
+(function injectFacebookReviews(){
+  const track = document.querySelector('.testimonials .slider__track');
+  if (!track) return;
+  track.innerHTML = '';
+  fbReviews.forEach(({name, text}) => {
+    const fig = document.createElement('figure');
+    fig.className = 'testimonial';
+    fig.innerHTML = `<blockquote>“${text}”</blockquote><figcaption>${name} – Avis Facebook</figcaption>`;
+    track.appendChild(fig);
+  });
+})();
+
+
+// v23.3-adjustMainPadding — ensure main content isn't hidden behind fixed navbar
+(function(){
+  function setPad(){
+    var nav = document.querySelector('.site-header .navbar') || document.querySelector('.navbar');
+    var main = document.querySelector('main#main, main');
+    if (!nav || !main) return;
+    var h = nav.getBoundingClientRect().height;
+    main.style.paddingTop = (h + 10) + 'px';
+  }
+  window.addEventListener('load', setPad);
+  window.addEventListener('resize', setPad);
+  document.addEventListener('DOMContentLoaded', setPad);
+})();
+
+/* v27 fix — Lightbox init */
+document.addEventListener('DOMContentLoaded', function(){
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  const lbClose = document.getElementById('lbClose');
+  if (!lb || !lbImg) return;
+
+  const imgs = document.querySelectorAll('#sables img, .sables img, .carousel img');
+  function openLB(src, alt){
+    lbImg.src = src; lbImg.alt = alt || '';
+    if (lbCap) lbCap.textContent = alt || '';
+    lb.classList.add('is-open');
+    document.documentElement.style.overflow = 'hidden';
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function closeLB(){
+    lb.classList.remove('is-open');
+    document.documentElement.style.overflow = '';
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+
+  imgs.forEach(img => {
+    const w = img.naturalWidth || img.width || 0;
+    const h = img.naturalHeight || img.height || 0;
+    if (w < 80 && h < 80) return;
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLB(img.currentSrc || img.src, img.alt);
+    });
+    img.setAttribute('tabindex', '0');
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLB(img.currentSrc || img.src, img.alt);
+      }
+    });
+  });
+
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+  if (lbClose) lbClose.addEventListener('click', closeLB);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLB();
+  });
+});
+
+
+
+// ===== Reviews Masonry (JSON) =====
+document.addEventListener('DOMContentLoaded', () => { try { initManualReviews(); } catch(e){} });
+
+async function initManualReviews(){
+  const target = document.getElementById('manual-reviews') || document.querySelector('#temoignages .reviews-masonry');
+  if(!target) return;
+  const reviews = await fetchJsonSafe('assets/data/reviews.json');
+  if(!reviews || !reviews.length){
+    target.insertAdjacentHTML('beforeend','<p>Aucun avis à afficher pour le moment.</p>');
+    return;
+  }
+  const items = reviews.slice(0, 24);
+  target.innerHTML = items.map(renderReviewCard).join('') + `
+    <div class="reviews-attrib">
+      <span>Source : Google</span>
+      <a href="https://www.google.com/search?q=La+Délicieuserie+Calais+avis" target="_blank" rel="noopener">Voir plus d’avis</a>
+    </div>`;
+}
+
+function renderReviewCard(rv){
+  const name  = escapeHtml(rv.author || 'Client Google');
+  const text  = escapeHtml(rv.text || '');
+  const date  = formatDate(rv.date) || rv.time || '';
+  const rating = clamp(parseInt(rv.rating, 10) || 0, 0, 5);
+  const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  const starsHtml = stars.split('').map(ch => `<span class="${ch==='★'?'star--on':'star--off'}">${ch}</span>`).join('');
+  return `
+    <article class="review-card">
+      <div class="review-head">
+        <img class="review-avatar" src="assets/icons/user.svg" alt="">
+        <div>
+          <div class="review-author">${name}</div>
+          <div class="review-meta"><span class="stars">${starsHtml}</span>${date?` · ${date}`:''}</div>
+        </div>
+      </div>
+      <p class="review-text">${text}</p>
+    </article>`;
+}
+
+function formatDate(iso){ if(!iso) return ''; try{ const d=new Date(iso); if(Number.isNaN(d.getTime())) return ''; return d.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'});}catch{return '';} }
+function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+async function fetchJsonSafe(url){ try{ const r=await fetch(url,{cache:'no-store'}); if(!r.ok) return null; return await r.json(); }catch{ return null; } }
