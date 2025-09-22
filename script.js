@@ -343,3 +343,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     container.appendChild(fig);
   });
 });
+
+
+/* v27p31: Force absolute _next URL for FormSubmit (works on GitHub Pages/subpaths) */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.contact__form');
+  const next = form ? form.querySelector('input[name="_next"]') : null;
+  if (next) {
+    try {
+      next.value = new URL('thanks.html', window.location.href).toString();
+    } catch(e) {}
+  }
+});
