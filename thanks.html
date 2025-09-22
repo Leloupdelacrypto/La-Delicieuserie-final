@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merci – La Délicieuserie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page merci aux couleurs de la marque */
+    body{ background: var(--color-background); }
+    .thankyou-wrap{
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(122, 172, 217, .15), transparent 60%),
+        radial-gradient(1200px 600px at 85% 110%, rgba(122, 172, 217, .12), transparent 60%);
+    }
+    .thankyou-card{
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,.06);
+      max-width: 720px;
+      width: 100%;
+      padding: clamp(1.2rem, 4vw, 2rem);
+      text-align: center;
+    }
+    .brand-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: .75rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+    }
+    .brand-badge img{ width: 48px; height: 48px; border-radius: 12px; object-fit: contain; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .thankyou-title{
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4.6vw, 2.6rem);
+      line-height: 1.12;
+      color: var(--color-primary-dark);
+      margin: .25rem 0 .6rem 0;
+    }
+    .thankyou-text{
+      font-size: 1.05rem;
+      color: var(--color-text);
+      margin-bottom: 1.2rem;
+    }
+    .btn-home{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .7rem 1.4rem;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: var(--shadow-soft);
+      transition: background .25s ease;
+    }
+    .btn-home:hover{ background: var(--color-primary-dark); }
+    .hint{ color: var(--color-muted); font-size: .95rem; margin-top: .8rem; }
+  </style>
+</head>
+<body>
+  <div class="thankyou-wrap">
+    <div class="thankyou-card">
+      <div class="brand-badge">
+        <img src="assets/logo.png" alt="Logo La Délicieuserie" />
+        <span>La Délicieuserie</span>
+      </div>
+      <h1 class="thankyou-title">La Délicieuserie vous remercie<br>et vous répondra dans les plus brefs délais</h1>
+      <p class="thankyou-text">Votre message a bien été envoyé. Nous revenons vers vous très rapidement 🤗</p>
+      <a class="btn-home" href="index.html#accueil" aria-label="Retour à l’accueil">← Retour à l’accueil</a>
+      <p class="hint">Si vous ne voyez pas notre e‑mail d’ici peu, vérifiez vos courriers indésirables.</p>
+    </div>
+  </div>
+</body>
+</html>
