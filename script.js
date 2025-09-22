@@ -355,3 +355,21 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch(e) {}
   }
 });
+
+
+/* v27p32: Force absolute thanks URL for FormSubmit */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.contact__form');
+  if (!form) return;
+  const abs = new URL('thanks.html', window.location.href).toString();
+  ['_next','next'].forEach(n => {
+    const el = form.querySelector(`input[name="${n}"]`);
+    if (el) el.value = abs;
+  });
+  try{
+    const url = new URL(form.action);
+    url.searchParams.set('next', abs);
+    url.searchParams.set('_next', abs);
+    form.action = url.toString();
+  }catch(e){}
+});

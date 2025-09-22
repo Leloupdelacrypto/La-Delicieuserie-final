@@ -621,3 +621,35 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
     letter-spacing:.2px;
   }
 }
+
+
+/* v27p32: pristine mobile 'Menu' pill (text only) */
+@media (max-width: 960px){
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:38px;
+    padding:0 .9rem;
+    width:auto;
+    min-width:unset;
+    background:var(--color-primary);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    font-weight:700;
+    line-height:1;
+    box-shadow:var(--shadow-soft);
+    gap:0;
+  }
+  .nav-toggle *{ background:transparent !important; }
+  .nav-toggle::before,
+  .nav-toggle::after{ display:none !important; content:none !important; }
+  .nav-toggle .nav-toggle__label{
+    display:block;
+    margin:0;
+    padding:0;
+    font-size:.96rem;
+    letter-spacing:.2px;
+  }
+}
