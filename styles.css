@@ -653,3 +653,43 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
     letter-spacing:.2px;
   }
 }
+
+
+/* v27p33: Mobile Menu button matches site .btn */
+@media (max-width: 960px){
+  .nav-toggle{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    height:42px;
+    padding:0 1rem !important;
+    width:auto !important;
+    min-width:unset !important;
+    border:none !important;
+    border-radius:9999px !important;
+    background:var(--color-primary) !important;
+    color:#fff !important;
+    font-weight:700 !important;
+    line-height:1 !important;
+    text-decoration:none !important;
+    appearance:none;
+    -webkit-appearance:none;
+    box-shadow: var(--shadow-soft);
+    cursor:pointer;
+  }
+  /* kill any bars or pseudo elements */
+  .nav-toggle > span:not(.nav-toggle__label),
+  .nav-toggle::before,
+  .nav-toggle::after,
+  .nav-toggle .nav-toggle__label::before,
+  .nav-toggle .nav-toggle__label::after{
+    display:none !important;
+    content:none !important;
+    width:0 !important; height:0 !important; padding:0 !important; margin:0 !important; border:0 !important;
+    background:none !important; box-shadow:none !important;
+  }
+  .nav-toggle *{ background:transparent !important; }
+  .nav-toggle .nav-toggle__label{
+    display:block; margin:0; padding:0; font-size:1rem; letter-spacing:.2px;
+  }
+}
