@@ -226,7 +226,7 @@ const fbReviews = [
   { name: "Alexandre", text: "Livraison rapide, résultat au-delà de nos attentes. On repassera commande !" }
 ];
 
-(function injectFacebookReviews_disabled(){
+(function injectFacebookReviews(){
   const track = document.querySelector('.testimonials .slider__track');
   if (!track) return;
   track.innerHTML = '';
@@ -326,59 +326,20 @@ function renderReviewCard(rv){
 }
 function escapeAttr(s){return (s||'').replace(/["'<>&]/g, m=>({'"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;','&':'&amp;'}[m]));}
 
-
-
-/* ===== v27p18: Reviews Masonry from JSON with inline fallback ===== */
+/* ===== v27p25: Reviews Masonry from JSON with inline fallback ===== */
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('reviewsMasonry');
   if (!container) return;
-
-  const starStr = (n) => {
-    let html = "";
-    for (let i = 1; i <= 5; i++) {
-      html += `<span class="${i <= n ? "star filled" : "star empty"}">${i <= n ? "★" : "☆"}</span>`;
-    }
-    return html;
-  };
-
-  async function fetchJson(){
-    try{
-      const res = await fetch('assets/data/reviews.json', {cache:'no-store'});
-      if (!res.ok) throw new Error('HTTP '+res.status);
-      return await res.json();
-    }catch(e){ return null; }
-  }
-  function inlineJson(){
-    try{
-      const node = document.getElementById('reviewsData');
-      if (!node) return null;
-      const txt = (node.textContent||'').trim();
-      if (!txt) return null;
-      return JSON.parse(txt);
-    }catch(e){ return null; }
-  }
-
-  let reviews = await fetchJson();
-  if (!Array.isArray(reviews) || reviews.length === 0){
-    const inline = inlineJson();
-    if (Array.isArray(inline)) reviews = inline;
-  }
-  if (!Array.isArray(reviews)) reviews = [];
-
-  container.innerHTML = '';
-  reviews.forEach(({author, text, rating=5, date='', source='Google', url=''}) => {
-    const fig = document.createElement('figure');
-    fig.className = 'review-card';
-    const sourceHtml = url ? `<span class="review-source"><a href="${url}" target="_blank" rel="noopener">Voir l’avis sur ${source}</a></span>` : `<span class="review-source">${source}</span>`;
-    fig.innerHTML = `
-      <blockquote>“${text}”</blockquote>
-      <figcaption class="review-meta">
-        <span class="review-author">${author}</span>
-        <span class="review-stars" aria-label="${rating} sur 5">${starStr(Number(rating)||5)}</span>
-        ${date ? `<time datetime="${date}">${date}</time>` : ''}
-        ${sourceHtml}
-      </figcaption>
-    `;
+  const starStr=(n)=>{let h="";for(let i=1;i<=5;i++){h+=`<span class="${i<=n?"star filled":"star empty"}">${i<=n?"★":"☆"}</span>`}return h};
+  async function fetchJson(){try{const r=await fetch('assets/data/reviews.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}catch(e){return null}}
+  function inlineJson(){try{const n=document.getElementById('reviewsData');if(!n)return null;const t=(n.textContent||'').trim();if(!t)return null;return JSON.parse(t)}catch(e){return null}}
+  let reviews=await fetchJson(); if(!Array.isArray(reviews)||reviews.length===0){const i=inlineJson(); if(Array.isArray(i)) reviews=i;}
+  if(!Array.isArray(reviews)) reviews=[];
+  container.innerHTML='';
+  reviews.forEach(({author,text,rating=5,date='',source='Google',url=''})=>{
+    const fig=document.createElement('figure'); fig.className='review-card';
+    const srcHtml = url?`<span class="review-source"><a href="${url}" target="_blank" rel="noopener">Voir l’avis sur ${source}</a></span>`:`<span class="review-source">${source}</span>`;
+    fig.innerHTML=`<blockquote>“${text}”</blockquote><figcaption class="review-meta"><span class="review-author">${author}</span><span class="review-stars" aria-label="${rating} sur 5">${starStr(Number(rating)||5)}</span>${date?`<time datetime="${date}">${date}</time>`:''}${srcHtml}</figcaption>`;
     container.appendChild(fig);
   });
 });
