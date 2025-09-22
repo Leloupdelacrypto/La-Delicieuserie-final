@@ -566,7 +566,7 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
     width: auto;
     min-width: unset;
   }
-  .nav-toggle span{ display:none !important; } /* hide burger bars */
+  .nav-toggle > span:not(.nav-toggle__label){ display:none !important; } /* hide burger bars */
   .nav-toggle .nav-toggle__label{
     display:inline-block;
     font-weight:700;
