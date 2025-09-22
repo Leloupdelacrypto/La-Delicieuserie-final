@@ -328,7 +328,7 @@ function escapeAttr(s){return (s||'').replace(/["'<>&]/g, m=>({'"':'&quot;',"'":
 
 
 
-/* ===== v27: Reviews Masonry fed from assets/data/reviews.json ===== */
+/* ===== v27p18: Reviews Masonry from JSON with inline fallback ===== */
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('reviewsMasonry');
   if (!container) return;
@@ -341,25 +341,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     return html;
   };
 
-  async function loadJson(){
+  async function fetchJson(){
     try{
       const res = await fetch('assets/data/reviews.json', {cache:'no-store'});
-      if(!res.ok) throw new Error('HTTP '+res.status);
+      if (!res.ok) throw new Error('HTTP '+res.status);
       return await res.json();
-    }catch(e){
-      // Try inline <script id="reviewsData"> as fallback
-      try{
-        const node = document.getElementById('reviewsData');
-        if (node){
-          const txt = (node.textContent||'').trim();
-          if (txt) return JSON.parse(txt);
-        }
-      }catch(_){}
-      return [];
-    }
+    }catch(e){ return null; }
+  }
+  function inlineJson(){
+    try{
+      const node = document.getElementById('reviewsData');
+      if (!node) return null;
+      const txt = (node.textContent||'').trim();
+      if (!txt) return null;
+      return JSON.parse(txt);
+    }catch(e){ return null; }
   }
 
-  const reviews = await loadJson();
+  let reviews = await fetchJson();
+  if (!Array.isArray(reviews) || reviews.length === 0){
+    const inline = inlineJson();
+    if (Array.isArray(inline)) reviews = inline;
+  }
+  if (!Array.isArray(reviews)) reviews = [];
+
   container.innerHTML = '';
   reviews.forEach(({author, text, rating=5, date='', source='Google', url=''}) => {
     const fig = document.createElement('figure');

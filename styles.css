@@ -477,103 +477,41 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
 
 
 
-/* ===== Reviews Masonry ===== */
-.reviews-masonry{
-  column-width: 300px;
-  column-gap: 1rem;
-}
-@media (max-width: 900px){ .reviews-masonry{ column-width: 260px; } }
-@media (max-width: 640px){ .reviews-masonry{ column-width: 220px; } }
-
-.review-card{
-  display:inline-block;
-  width:100%;
-  break-inside:avoid;
-  background:var(--color-surface);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
-  padding:1rem 1.1rem;
-  margin:0 0 1rem 0;
-}
+/* ===== Reviews Masonry & Stars ===== */
+.reviews-masonry{ column-width:300px; column-gap:1rem; }
+@media (max-width:900px){ .reviews-masonry{ column-width:260px; } }
+@media (max-width:640px){ .reviews-masonry{ column-width:220px; } }
+.review-card{ display:inline-block; width:100%; break-inside:avoid; background:var(--color-surface); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius-md); box-shadow:var(--shadow-soft); padding:1rem 1.1rem; margin:0 0 1rem 0; }
 .review-card blockquote{ margin:0 0 .75rem 0; font-style:italic; }
 .review-meta{ display:flex; flex-direction:column; gap:.25rem; font-size:.9rem; color:var(--color-muted); }
 .review-author{ font-weight:600; color:var(--color-text); }
-.review-source a{ text-decoration: underline; word-break: break-all; }
-
+.review-source a{ text-decoration:underline; word-break:break-all; }
 .review-stars{ font-size:1.1rem; letter-spacing:.05em; }
-.review-stars .star.filled{ color:#fbbc04; } /* Jaune Google */
-.review-stars .star.empty{ color:#ccc; }     /* Gris étoiles vides */
+.review-stars .star.filled{ color:#fbbc04; }
+.review-stars .star.empty{ color:#ccc; }
 
-
-
-/* ===== Button: Voir tous les avis Google ===== */
+/* ===== Button: Voir tous les avis Google (brand) ===== */
 .section-intro{ text-align:center; }
 .btn-reviews{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:.5rem;
-  margin:.8rem auto 0 auto;
-  padding:.7rem 1.4rem;
-  background:var(--color-primary);
-  color:#fff;
-  font-weight:700;
-  font-size:1rem;
-  border-radius: var(--radius-md);
-  text-decoration:none;
-  box-shadow: var(--shadow-soft);
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  margin:.8rem auto 0 auto; padding:.7rem 1.4rem;
+  background:var(--color-primary); color:#fff; font-weight:700; font-size:1rem;
+  border-radius: var(--radius-md); text-decoration:none; box-shadow: var(--shadow-soft);
   transition: background .25s ease;
 }
 .btn-reviews:hover{ background:var(--color-primary-dark); }
-.btn-reviews .icon-review{ width:1.1em;height:1.1em; }
+.btn-reviews .icon-review{ width:1.1em; height:1.1em; }
 
-
-
-/* ===== Header behavior adjustments ===== */
+/* ===== Header behavior: sticky only central navbar ===== */
 .site-header{ position:static; top:auto; z-index:inherit; background:transparent; backdrop-filter:none; }
 .container.navbar{ position:sticky; top:0; z-index:60; background:rgba(251,250,247,.92); backdrop-filter:saturate(130%) blur(6px); }
+/* Hide blue top banner on mobile */
+@media (max-width:768px){ .top-banner{ display:none; } }
 
-@media (max-width: 768px){
-  .top-banner{ display:none; }
-}
-
-
-
-/* v27p15: Reduce space before "Pourquoi choisir La Délicieuserie ?" */
-.hero{
-  /* shorter hero */
-  min-height: 36vh;
-  margin: 0 0 0.6rem;
-}
-@media (max-width: 1024px){
-  .hero{ min-height: 42vh; }
-}
-@media (max-width: 640px){
-  .hero{ min-height: 48vh; }
-}
-
-/* tighten the next section */
-.highlights{ padding-top: 1.5rem; } /* was 3rem */
-
-
-
-/* v27p16: Ultra-tight space before "Pourquoi choisir" */
-.hero{
-  min-height: 24vh;
-  margin: 0;
-}
-.hero__content{
-  /* reduce vertical padding significantly */
-  padding: clamp(0.75rem,3vw,1.5rem) clamp(0.8rem,3vw,1.2rem);
-}
-@media (max-width: 1024px){
-  .hero{ min-height: 28vh; }
-}
-@media (max-width: 640px){
-  .hero{ min-height: 32vh; }
-}
-
-/* Next section spacing almost zero */
-.highlights{ padding-top: 0.25rem; }
-.section-title{ margin-top: 0.2rem; }
+/* ===== Ultra-tight hero spacing ===== */
+.hero{ min-height:20vh; margin:0; }
+.hero__content{ padding: clamp(0.5rem,2.5vw,1rem) clamp(0.6rem,2.5vw,1rem); }
+@media (max-width:1024px){ .hero{ min-height:24vh; } }
+@media (max-width:640px){ .hero{ min-height:28vh; } }
+.highlights{ padding-top:0; }
+.section-title{ margin-top:0; }
