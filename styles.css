@@ -762,3 +762,32 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
   #apropos .about__content{ grid-row: auto; }
   #apropos .about__image{ grid-column: 1; }
 }
+/* À propos : même gabarit que "Personnalisation" (50/50), 2 photos empilées à droite */
+#apropos .about__wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* comme la section Personnalisation */
+  gap: 24px;
+  align-items: start;
+}
+
+#apropos .about__content{
+  grid-column: 1;
+}
+
+#apropos .about__image{
+  grid-column: 2;                   /* les 2 <div class="about__image"> se placent l’une sous l’autre */
+}
+
+#apropos .about__image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* Mobile : 1 colonne (texte puis les images) */
+@media (max-width: 960px){
+  #apropos .about__wrapper{ grid-template-columns: 1fr; }
+  #apropos .about__content{ grid-column: 1; }
+  #apropos .about__image{ grid-column: 1; }
+}
