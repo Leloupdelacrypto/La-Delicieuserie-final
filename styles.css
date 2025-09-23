@@ -829,3 +829,23 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
     line-height:1 !important;
   }
 }
+/* À propos : 50/50 comme "Personnalisation", 2 photos empilées à droite */
+#apropos .about__wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* même gabarit que Personnalisation */
+  gap: 24px;
+  align-items: start;
+}
+#apropos .about__content{ grid-column: 1; }
+#apropos .about__image{  grid-column: 2; }   /* les deux .about__image s’empilent */
+#apropos .about__image img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile : on repasse en 1 colonne */
+@media (max-width: 960px){
+  #apropos .about__wrapper{ grid-template-columns: 1fr; }
+  #apropos .about__image{ grid-column: 1; }
+}
