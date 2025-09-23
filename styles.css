@@ -730,3 +730,35 @@ section.produits .section-title{ color: var(--color-primary-dark) !important; }
     letter-spacing:.2px;
   }
 }
+/* À propos : texte à gauche, 2 photos à droite (empilées) */
+#apropos .about__wrapper{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) 360px; /* colonne texte | colonne images */
+  gap: 24px;
+  align-items:start;
+}
+
+/* le texte occupe la colonne de gauche et s'étend sur la hauteur des deux images */
+#apropos .about__content{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* chaque image est placée dans la colonne de droite (elles s’empilent automatiquement) */
+#apropos .about__image{
+  grid-column: 2;
+}
+
+#apropos .about__image img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius: var(--radius-md); /* optionnel : arrondis comme ailleurs */
+}
+
+/* Mobile : on repasse en 1 colonne (texte puis images) */
+@media (max-width: 960px){
+  #apropos .about__wrapper{ grid-template-columns: 1fr; }
+  #apropos .about__content{ grid-row: auto; }
+  #apropos .about__image{ grid-column: 1; }
+}
