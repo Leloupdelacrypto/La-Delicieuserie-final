@@ -1,7 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- CMP Consentmanager : doit être chargé en premier -->
+  <script type="text/javascript"
+          data-cmp-ab="1"
+          src="https://cdn.consentmanager.net/delivery/autoblocking/ddde3729e2a51.js"
+          data-cmp-host="a.delivery.consentmanager.net"
+          data-cmp-cdn="cdn.consentmanager.net"
+          data-cmp-codesrc="16"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Délicieuserie — Biscuiterie artisanale & personnalisée</title>
@@ -11,15 +18,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DM5CW16D3N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-DM5CW16D3N');
-</script>
+  <!-- Google tag (gtag.js) avec Consent Mode par défaut en denied -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DM5CW16D3N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Consent par défaut : tout refusé (le CMP viendra mettre à jour en fonction du choix de l'utilisateur)
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'denied',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-DM5CW16D3N');
+  </script>
 </head>
 <body>
 <header class="site-header" id="accueil">
@@ -304,7 +321,8 @@ Bienvenue dans mon univers sucré, où gourmandise rime avec émotion ✨
 
 <script src="script.js" defer></script>
 
-<!-- Facebook SDK (nécessaire pour l'embed fb-page) --><script>
+<!-- Facebook SDK (nécessaire pour l'embed fb-page) -->
+<script>
 document.addEventListener('DOMContentLoaded', function(){
   if (window.FB && FB.XFBML && FB.XFBML.parse){ FB.XFBML.parse(); }
 });
@@ -316,7 +334,4 @@ document.addEventListener('DOMContentLoaded', function(){
   <p class="lb__cap" id="lbCap" role="note"></p>
 </div>
 </body>
-
-
-
 </html>
