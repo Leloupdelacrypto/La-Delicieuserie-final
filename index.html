@@ -1,337 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <!-- CMP Consentmanager : doit être chargé en premier -->
-  <script type="text/javascript"
-          data-cmp-ab="1"
-          src="https://cdn.consentmanager.net/delivery/autoblocking/ddde3729e2a51.js"
-          data-cmp-host="a.delivery.consentmanager.net"
-          data-cmp-cdn="cdn.consentmanager.net"
-          data-cmp-codesrc="16"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biscuiterie artisanale à Calais · La Délicieuserie</title>
+<meta name="description" content="À Calais, Anne-Sophie façonne des sablés personnalisés pour mariages, fêtes de famille et entreprises. Découvrez ses idées de biscuits et demandez votre devis.">
+<link rel="canonical" href="https://www.ladelicieuserie.fr/">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Délicieuserie — Biscuiterie artisanale & personnalisée</title>
-  <meta name="description" content="Biscuiterie artisanale à Calais. Sablés personnalisés pour événements, cadeaux d’entreprise et attentions gourmandes.">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="assets/favicon.png">
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Google tag (gtag.js) avec Consent Mode par défaut en denied -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DM5CW16D3N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-
-    // Consent par défaut : tout refusé (le CMP viendra mettre à jour en fonction du choix de l'utilisateur)
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied',
-      'functionality_storage': 'denied',
-      'personalization_storage': 'denied',
-      'security_storage': 'granted'
-    });
-
-    gtag('js', new Date());
-    gtag('config', 'G-DM5CW16D3N');
-  </script>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="La Délicieuserie">
+<meta property="og:title" content="Biscuiterie artisanale à Calais · La Délicieuserie">
+<meta property="og:description" content="À Calais, Anne-Sophie façonne des sablés personnalisés pour mariages, fêtes de famille et entreprises. Découvrez ses idées de biscuits et demandez votre devis.">
+<meta property="og:url" content="https://www.ladelicieuserie.fr/">
+<meta property="og:image" content="https://www.ladelicieuserie.fr/assets/media/partage.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anne-Sophie et l’emblème de La Délicieuserie">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="icon" type="image/png" href="/assets/media/favicon.png">
+<script>document.documentElement.classList.add("js");</script>
+<script data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/ddde3729e2a51.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+<link rel="stylesheet" href="/styles.css">
+<script defer src="/script.js"></script>
+<script defer src="/consent.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ladelicieuserie.fr/#page",
+      "url": "https://www.ladelicieuserie.fr/",
+      "name": "Biscuiterie artisanale à Calais · La Délicieuserie",
+      "description": "À Calais, Anne-Sophie façonne des sablés personnalisés pour mariages, fêtes de famille et entreprises. Découvrez ses idées de biscuits et demandez votre devis.",
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@id": "https://www.ladelicieuserie.fr/#site"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.ladelicieuserie.fr/#site",
+      "url": "https://www.ladelicieuserie.fr/",
+      "name": "La Délicieuserie",
+      "publisher": {
+        "@id": "https://www.ladelicieuserie.fr/#biscuiterie"
+      }
+    },
+    {
+      "@id": "https://www.ladelicieuserie.fr/#biscuiterie",
+      "@type": "Bakery",
+      "name": "La Délicieuserie",
+      "url": "https://www.ladelicieuserie.fr/",
+      "telephone": "+33617419761",
+      "email": "ladelicieuserie@gmail.com",
+      "logo": "https://www.ladelicieuserie.fr/assets/media/logo-480.webp",
+      "image": "https://www.ladelicieuserie.fr/assets/media/partage.jpg",
+      "sameAs": [
+        "https://www.instagram.com/la_delicieuserie/",
+        "https://www.facebook.com/p/La-D%C3%A9licieuserie-61555204563313/",
+        "https://www.linkedin.com/company/la-delicieuserie/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calais",
+        "postalCode": "62100",
+        "addressCountry": "FR"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header class="site-header" id="accueil">
-  <div class="top-banner">
-    <div class="container">
-      <p>Biscuiterie artisanale • Personnalisation à la demande • Retrait & livraison</p>
-      <div class="top-banner__cta">
-        <a href="tel:+33617419761" class="top-link"> 06.17.41.97.61</a>
-        <a href="#contact" class="top-link">Commander</a>
-      </div>
-    </div>
-  </div>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="masthead" id="accueil"><div class="wrap header-inner">
+  <a class="brand" href="/" aria-label="La Délicieuserie, accueil">
+    <img src="/assets/media/logo-96.webp" srcset="/assets/media/logo-96.webp 1x, /assets/media/logo-192.webp 2x" width="53" height="53" alt="">
+    <span>La Délicieuserie</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" hidden><i aria-hidden="true"></i> Menu</button>
+  <nav id="navigation" aria-label="Navigation principale"><a href="/biscuits-personnalises/">Nos sablés</a>
+<a href="/biscuits-mariage/">Mariages</a>
+<a href="/biscuits-fetes-de-famille/">Fêtes de famille</a>
+<a href="/biscuits-entreprise/">Entreprises</a>
+<a href="/biscuiterie-calais/">L’atelier</a>
+    <a class="button nav-quote" href="/devis/">Demander un devis</a></nav>
+</div></header>
+<main id="main" tabindex="-1">
 
-  <div class="container navbar" role="navigation" aria-label="Navigation principale">
-    <a class="brand" href="#accueil">
-      <img src="assets/logo.png" alt="Logo La Délicieuserie" />
-      <span>
-        <strong>La Délicieuserie</strong>
-        <small>Biscuiterie artisanale & personnalisée</small>
-      </span>
-    </a>
-    <button class="nav-toggle btn btn--primary" aria-expanded="false" aria-controls="primary-menu" id="navToggle" aria-label="Ouvrir le menu"><span class="nav-toggle__label">Menu</span></button>
-    <nav id="primary-menu" class="nav-links">
-      <a href="#accueil">Accueil</a>
-      <a href="#produits">Biscuits</a>
-      <a href="#personnalisation">Personnalisation</a>
-      <a href="#apropos">À propos</a>
-      <a href="#temoignages">Avis</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" role="presentation">
-  <div class="container hero__content">
-    <p class="hero__subtitle">Biscuiterie sur‑mesure</p>
-    <h1 class="hero__title">Biscuiterie artisanale &amp; sur-mesure</h1>
-    <p class="hero__text">Forme, taille, message, logo… nous personnalisons chaque biscuit pour vos événements, cadeaux d’entreprise et attentions gourmandes.</p>
-    <div class="hero__actions">
-      <a class="btn btn--lg btn--primary" href="#contact">Demander un devis</a>
-      <a class="btn btn--ghost" href="#produits">Découvrir Nos Sablés</a>
-    </div>
-      <script id="reviewsData" type="application/json">[{"author": "Claire D.", "rating": 5, "date": "2025-08-21", "text": "Les sablés étaient magnifiques et délicieux, parfaits pour notre mariage. Tout le monde a adoré !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/1"}, {"author": "Julien M.", "rating": 5, "date": "2025-07-14", "text": "Commande professionnelle impeccable : logo de notre entreprise parfaitement reproduit, et biscuits super bons.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/2"}, {"author": "Amélie R.", "rating": 4, "date": "2025-06-30", "text": "Très bons sablés, livraison rapide. Une petite erreur sur un prénom mais corrigée tout de suite, merci !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/3"}, {"author": "Baptiste H.", "rating": 5, "date": "2025-06-10", "text": "Sablés personnalisés pour un anniversaire : superbes, délicieux et réalisés avec soin. Je recommande à 100%.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/4"}, {"author": "Sophie L.", "rating": 5, "date": "2025-05-28", "text": "Un service client aux petits soins et des sablés originaux qui ont fait sensation lors de notre événement.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/5"}, {"author": "Marc T.", "rating": 5, "date": "2025-04-15", "text": "Qualité artisanale irréprochable, biscuits aussi beaux que bons. J’y retournerai sans hésiter.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/6"}]</script>
-  </div>
-</section>
-
-<main id="main">
-  <section class="highlights" aria-labelledby="highlights-title">
-    <div class="container">
-      <h2 id="highlights-title" class="section-title">Pourquoi choisir La Délicieuserie&nbsp;?</h2>
-      <div class="highlight-grid">
-        <article class="highlight-card">
-          <div class="highlight-icon" aria-hidden="true">🍪</div>
-          <h3>Artisanal</h3>
-          <p>Ingrédients sans conservateur, fabrication à la main.</p>
-        </article>
-        <article class="highlight-card">
-          <div class="highlight-icon" aria-hidden="true">🎨</div>
-          <h3>100% personnalisable</h3>
-          <p>Forme, message, motif ou logo : créez un biscuit unique. La gourmandise sur mesure, avec passion et authenticité.</p>
-        </article>
-        <article class="highlight-card">
-          <div class="highlight-icon" aria-hidden="true">🚚</div>
-          <h3>Commandes pro & particuliers</h3>
-          <p>Pour mariages, naissances, anniversaires, cadeaux d’entreprise et événements.</p>
-        </article>
-      </div>
-    </div>
-  
-
-</div>
-</section>
-
-  <section id="produits" class="produits">
-  <div class="container">
-    <h2 class="section-title">Nos Sablés</h2>
-    <p class="section-subtitle">
-  <strong>Deux univers : Professionnels & Particuliers</strong><br>
-  Ingrédients : Farine de blé, beurre, sucre, œufs, sucre vanillé bourbon.<br>
-  Tous les sablés font 4 millimètres d'épaisseur.<br>
-  Le délai de conservation est de 3 mois.
-</p>
-
-
-
-    <div class="carousels">
-      <section class="carousel" data-carousel="pros" aria-labelledby="carousel-pros-title">
-        <div class="carousel__head">
-          <h3 id="carousel-pros-title"><span class="accent-orange">Professionnels</span></h3>
-          <p class="carousel__subtitle">Logo comestible, cadeaux d’affaires</p>
-        </div>
-        <div class="carousel__viewport">
-          <button class="carousel__control" data-dir="prev" aria-label="Précédent">&#10094;</button>
-          <div class="carousel__track">
-            <img src="assets/images/pros1.jpg" alt="Sablés logo entreprise 1" class="carousel__slide" />
-            <img src="assets/images/pros2.jpg" alt="Sablés logo entreprise 2" class="carousel__slide" />
-            <img src="assets/images/pros3.jpg" alt="Coffret sablés personnalisés entreprise" class="carousel__slide" />
-          </div>
-          <button class="carousel__control" data-dir="next" aria-label="Suivant">&#10095;</button>
-        </div>
-        <div class="carousel__dots" aria-label="Sélection d’image professionnels"></div>
-      </section>
-
-      <section class="carousel" data-carousel="particuliers" aria-labelledby="carousel-part-title">
-        <div class="carousel__head">
-          <h3 id="carousel-part-title"><span class="accent-orange">Particuliers</span></h3>
-          <p class="carousel__subtitle">Mariage, naissance, anniversaire, baptême, communion, etc...</p>
-        </div>
-        <div class="carousel__viewport">
-          <button class="carousel__control" data-dir="prev" aria-label="Précédent">&#10094;</button>
-          <div class="carousel__track">
-            <img src="assets/images/part1.jpg" alt="Sablés personnalisés mariage" class="carousel__slide" />
-            <img src="assets/images/part2.jpg" alt="Sablés personnalisés anniversaire" class="carousel__slide" />
-            <img src="assets/images/part3.jpg" alt="Sablés personnalisés naissance" class="carousel__slide" />
-          </div>
-          <button class="carousel__control" data-dir="next" aria-label="Suivant">&#10095;</button>
-        </div>
-        <div class="carousel__dots" aria-label="Sélection d’image particuliers"></div>
-      </section>
-    </div>
-      <script id="reviewsData" type="application/json">[{"author": "Claire D.", "rating": 5, "date": "2025-08-21", "text": "Les sablés étaient magnifiques et délicieux, parfaits pour notre mariage. Tout le monde a adoré !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/1"}, {"author": "Julien M.", "rating": 5, "date": "2025-07-14", "text": "Commande professionnelle impeccable : logo de notre entreprise parfaitement reproduit, et biscuits super bons.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/2"}, {"author": "Amélie R.", "rating": 4, "date": "2025-06-30", "text": "Très bons sablés, livraison rapide. Une petite erreur sur un prénom mais corrigée tout de suite, merci !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/3"}, {"author": "Baptiste H.", "rating": 5, "date": "2025-06-10", "text": "Sablés personnalisés pour un anniversaire : superbes, délicieux et réalisés avec soin. Je recommande à 100%.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/4"}, {"author": "Sophie L.", "rating": 5, "date": "2025-05-28", "text": "Un service client aux petits soins et des sablés originaux qui ont fait sensation lors de notre événement.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/5"}, {"author": "Marc T.", "rating": 5, "date": "2025-04-15", "text": "Qualité artisanale irréprochable, biscuits aussi beaux que bons. J’y retournerai sans hésiter.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/6"}]</script>
-  </div>
-</section>
-
-  <section id="personnalisation" class="about">
-    <div class="container about__wrapper">
-      <div class="about__image"><img src="assets/images/personnalisation.jpg" alt="Personnalisation des biscuits"></div>
-      <div class="about__content">
-        <h2 class="section-title">Personnalisation</h2>
-        <p class="section-subtitle">Créez un biscuit qui vous ressemble</p>
-        <ul class="about__list">
-          <li>Choix de la <strong>forme</strong> et de la <strong>taille</strong></li>
-          <li>Ajout d’un <strong>prénom</strong>, <strong>message</strong> ou <strong>date</strong></li>
-          <li>Intégration d’un <strong>dessin</strong>, <strong>logo</strong> ou <strong>motif</strong></li>
-        </ul>
-        <a class="btn btn--primary" href="#contact">Discuter de votre projet</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="apropos" class="about">
-    <div class="container about__wrapper">
-      <div class="about__image"><img src="assets/images/atelier.jpg" alt="Atelier biscuiterie artisanale"></div>
-      <div class="about__image"><img src="assets/images/portrait.jpg" alt="Atelier biscuiterie artisanale"></div>
-      <div class="about__content">
-        <h2 class="section-title">À propos</h2>
-        <p class="section-subtitle">La Délicieuserie – Biscuiterie artisanale à Calais</p>
-        <p>👩‍🍳 Je m’appelle Anne-Sophie Dubois, créatrice de La Délicieuserie, une biscuiterie artisanale située à Calais.
-Depuis toujours, je suis passionnée par la gourmandise et l’art du détail. Ce qui n’était au départ qu’un simple plaisir s’est transformé en véritable métier : donner vie à des sablés uniques, personnalisés et faits main.
-</p>
-        <p>🎨 Chaque biscuit est pensé comme une petite œuvre : un prénom, un logo, un symbole… transformé en douceur croquante. Mon objectif est d’allier authenticité, créativité et goût, pour rendre vos moments spéciaux encore plus mémorables.
-
-</p>
-        <p>✔️ Soucieuse d’offrir des créations dans les meilleures conditions d’hygiène et de sécurité alimentaire, j’ai obtenu la certification HACCP, gage de confiance et de qualité.
-</p>
-        <p>🍪 La Délicieuserie, plus qu’une biscuiterie
-La Délicieuserie est née de l’envie d’offrir des biscuits aussi beaux que bons, qui transforment chaque occasion en moment unique.
-           Ici, chaque sablé est fabriqué à la main, avec soin et passion, dans le respect des traditions artisanales.
-</p>
-        <p>🌿 Nos engagements
-
-Une fabrication artisanale, 100 % faite maison à Calais.
-
-Des ingrédients de qualité, rigoureusement sélectionnés.
-
-Une hygiène irréprochable, garantie par la certification HACCP.
-
-Une démarche locale et écoresponsable, avec une production à taille humaine.
-
-
-Mariages, baptêmes, anniversaires, événements d’entreprise ou simples instants de partage… chaque biscuit raconte une histoire, la vôtre.
-
-Bienvenue dans mon univers sucré, où gourmandise rime avec émotion ✨
-</p> 
-        <a class="btn btn--ghost" href="#contact">Nous écrire</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="container cta__wrapper">
-      <div>
-        <h2 class="section-title" style="color:#fff">Envie d’un devis rapide&nbsp;?</h2>
-        <p>Parlez‑nous de votre événement, vos quantités et votre personnalisation.</p>
-      </div>
-      <a class="btn btn--primary" href="mailto:contact@exemple.fr">Contact direct</a>
-    </div>
-  </section>
-
-  <section class="testimonials" id="temoignages" aria-labelledby="testimonials-title">
-  <div class="container">
-    <div class="section-intro">
-      <h2 id="testimonials-title" class="section-title">Ils en parlent</h2>
-      <p class="section-subtitle">Des retours qui nous motivent au quotidien</p>
-      <a href="https://www.google.com/search?sa=X&sca_esv=5e6ac80979e5733a&tbm=lcl&sxsrf=AE3TifO-IBIs8yLRnuPYCMNm8Q41NUVUKw:1758467205113&q=La%20D%C3%A9licieuserie%20Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NzAzs7Q0MDUyMzc3MTGxNLcw3cDI-IpRzCdRweXwypzM5MzU0uLUosxUBceyzOJFrDgkAB1uIU1MAAAA&rldimm=7066990526774449785&hl=fr-NL&ved=0CA0Q5foLahcKEwigpJnpkOqPAxUAAAAAHQAAAAAQBQ&biw=1920&bih=858&dpr=2#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2xSZlZqaFVTbXBNWTBkME5HWkZkVFl3YlhOeGEwRRAB" target="_blank" rel="noopener noreferrer" class="btn btn-reviews">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-review" aria-hidden="true" focusable="false">
-          <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 1.8l1.62 3.29 3.64.53-2.63 2.56.62 3.63L12 13.96l-3.25 1.71.62-3.63L6.74 9.62l3.64-.53L12 5.8z" fill="currentColor"/>
-        </svg>
-        Voir tous les avis Google
-      </a>
-    </div>
-    <div class="reviews-masonry" id="reviewsMasonry" aria-live="polite">
-      <noscript>Activez JavaScript pour afficher les avis.</noscript>
-    </div>
-      <script id="reviewsData" type="application/json">[{"author": "Claire D.", "rating": 5, "date": "2025-08-21", "text": "Les sablés étaient magnifiques et délicieux, parfaits pour notre mariage. Tout le monde a adoré !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/1"}, {"author": "Julien M.", "rating": 5, "date": "2025-07-14", "text": "Commande professionnelle impeccable : logo de notre entreprise parfaitement reproduit, et biscuits super bons.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/2"}, {"author": "Amélie R.", "rating": 4, "date": "2025-06-30", "text": "Très bons sablés, livraison rapide. Une petite erreur sur un prénom mais corrigée tout de suite, merci !", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/3"}, {"author": "Baptiste H.", "rating": 5, "date": "2025-06-10", "text": "Sablés personnalisés pour un anniversaire : superbes, délicieux et réalisés avec soin. Je recommande à 100%.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/4"}, {"author": "Sophie L.", "rating": 5, "date": "2025-05-28", "text": "Un service client aux petits soins et des sablés originaux qui ont fait sensation lors de notre événement.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/5"}, {"author": "Marc T.", "rating": 5, "date": "2025-04-15", "text": "Qualité artisanale irréprochable, biscuits aussi beaux que bons. J’y retournerai sans hésiter.", "source": "Google", "url": "https://www.google.com/maps/place/La+Delicieuserie/review/6"}]</script>
-  </div>
-</section>
-
-  <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="container contact__grid">
-      <div>
-        <h2 id="contact-title" class="section-title">Contact & informations</h2>
-        <p class="section-subtitle">Biscuiterie à Calais • Retrait & livraison</p>
-        <ul class="contact__list">
-<li>
-  <img src="assets/icons/facebook.svg" alt="Facebook" class="icon"> <a href="https://www.facebook.com/p/La-D%C3%A9licieuserie-61555204563313/" target="_blank" rel="noopener">Facebook</a>
-</li>
-          <li><span class="contact__icon" aria-hidden="true"><img src="assets/icons/phone.svg" alt=""></span> <a href="tel:+33617419761">06.17.41.97.61</a></li>
-          <li><span class="contact__icon" aria-hidden="true"><img src="assets/icons/mail.svg" alt=""></span> <a href="mailto:ladelicieuserie@gmail.com">ladelicieuserie@gmail.com</a></li>
-          
-          <li>
-            <span class="contact__icon" aria-hidden="true"><img src="assets/icons/instagram.svg" alt=""></span>
-            <a href="https://www.instagram.com/la_delicieuserie/" target="_blank" rel="noopener">Instagram</a>
-          </li>
-          <li>
-            <span class="contact__icon" aria-hidden="true"><img src="assets/icons/messenger.svg" alt=""></span>
-            <a href="https://www.messenger.com/t/188037521066732" target="_blank" rel="noopener">Messenger</a>
-          </li>
-          <li><span class="contact__icon" aria-hidden="true">📍</span> <span>Calais, France</span></li>
-                <li>
-            <span class="contact__icon" aria-hidden="true"><img src="assets/icons/linkedin.svg" alt="LinkedIn" class="icon"></span>
-            <a href="https://www.linkedin.com/company/la-delicieuserie/" aria-label="LinkedIn">LinkedIn</a>
-        </li>
-</ul>
-        <p class="contact__info">Devis gratuit • Délais selon quantités • Emballages soignés</p>
-      </div>
-      <form class="contact__form" action="https://formsubmit.co/ladelicieuserie@gmail.com" method="POST">
-  <input type="hidden" name="next" value="thanks.html">
-        <input type="hidden" name="_next" value="thanks.html">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Nouveau message depuis La Délicieuserie">
-        <div class="form-group">
-          <label for="name">Nom complet</label>
-          <input id="name" name="name" type="text" placeholder="Votre nom" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Adresse e‑mail</label>
-          <input id="email" name="email" type="email" placeholder="vous@exemple.fr" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input id="phone" name="phone" type="tel" placeholder="" />
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="Parlez‑nous de votre projet (quantités, date, thèmes)"></textarea>
-        </div>
-        <button class="btn btn--primary" type="submit">Envoyer le message</button>
-        <p class="form-disclaimer">En soumettant ce formulaire, vous acceptez d’être recontacté·e par e‑mail.</p>
-      </form>
-    </div>
-  </section>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy">
+    <p class="kicker">Biscuiterie artisanale à Calais</p>
+    <h1>Des sablés<br><em>à votre image.</em></h1>
+    <p class="lead">Un prénom, une date, un logo… Anne-Sophie prépare vos biscuits à la main et les personnalise pour un mariage, une fête de famille ou un cadeau d’entreprise.</p>
+    <div class="actions"><a class="button" href="/devis/">Demander un devis</a><a class="text-link" href="/biscuits-personnalises/">Découvrir les sablés</a></div></div>
+    <figure class="cover-art home-art">
+    <div class="picture-frame"><img src="/assets/media/hero-800.webp" srcset="/assets/media/hero-480.webp 480w, /assets/media/hero-800.webp 800w, /assets/media/hero-1184.webp 1184w" sizes="(max-width: 760px) 94vw, (max-width: 1280px) 49vw, 620px" width="1184" height="864" alt="Assortiment de sablés gravés de messages et de motifs sur une planche en bois" fetchpriority="high" loading="eager"></div>
+    <figcaption>Sablés gravés · Formes et messages</figcaption></figure></div></section>
+    <div class="atelier-strip"><div class="wrap"><span>Fabrication à la main</span><i aria-hidden="true">✦</i>
+    <span>Retrait à Calais</span><i aria-hidden="true">✦</i><span>Envoi en France</span></div></div>
+    <section class="wrap occasions-section" id="produits"><div class="section-head"><div><p class="kicker">Les occasions</p>
+    <h2>Un biscuit pour <em>chaque occasion.</em></h2></div></div><div class="occasions"><article class="occasion-card"><a href="/biscuits-mariage/" class="card-link">
+        <div class="card-photo"><img src="/assets/media/part3-800.webp" srcset="/assets/media/part3-480.webp 480w, /assets/media/part3-800.webp 800w, /assets/media/part3-1184.webp 1184w" sizes="(max-width: 720px) 90vw, 32vw" width="1184" height="864" alt="Sablé aux bords cannelés orné de deux alliances, de prénoms et d’une date" loading="lazy" decoding="async"></div><h3>Mariages</h3></a><p>Prénoms, alliances et cadeaux d’invités.</p></article><article class="occasion-card"><a href="/biscuits-entreprise/" class="card-link">
+        <div class="card-photo"><img src="/assets/media/pros2-800.webp" srcset="/assets/media/pros2-480.webp 480w, /assets/media/pros2-800.webp 800w, /assets/media/pros2-1088.webp 1088w" sizes="(max-width: 720px) 90vw, 32vw" width="1088" height="960" alt="Sablé rond gravé du mot « Merci » au milieu de biscuits à motifs" loading="lazy" decoding="async"></div><h3>Entreprises</h3></a><p>Logos, séminaires et cadeaux clients.</p></article><article class="occasion-card"><a href="/biscuits-fetes-de-famille/" class="card-link">
+        <div class="card-photo"><img src="/assets/media/part1-800.webp" srcset="/assets/media/part1-480.webp 480w, /assets/media/part1-800.webp 800w, /assets/media/part1-1024.webp 1024w" sizes="(max-width: 720px) 90vw, 32vw" width="1024" height="1024" alt="Sablé d’anniversaire gravé d’un cygne et de l’inscription « 10 ans »" loading="lazy" decoding="async"></div><h3>Fêtes de famille</h3></a><p>Anniversaires, baptêmes et naissances.</p></article></div></section>
+    <section class="story" id="apropos"><div class="wrap story-grid">
+    <div class="portrait"><img src="/assets/media/portrait-800.webp" srcset="/assets/media/portrait-480.webp 480w, /assets/media/portrait-800.webp 800w" sizes="(max-width: 760px) 75vw, 410px" width="800" height="800" alt="Anne-Sophie Dubois, créatrice de La Délicieuserie, en tenue de travail" loading="lazy" decoding="async"></div>
+    <div><p class="kicker">L’atelier de Calais</p><h2>Les mains<br><em>d’Anne-Sophie.</em></h2>
+    <p>À Calais, Anne-Sophie Dubois a fait de son goût pour la pâtisserie et le dessin son métier. Elle prépare chaque sablé au beurre, puis y inscrit le détail qui le rend personnel.</p>
+    <a class="text-link" href="/biscuiterie-calais/">Rencontrer la créatrice</a></div></div></section>
+    <section class="wrap practical"><div id="personnalisation"><p class="kicker">Sur mesure</p><h2>Que peut-on graver sur un sablé ?</h2>
+    <p>Un mot, une date, un dessin ou un logo. La taille du biscuit et le niveau de détail se choisissent ensemble.</p><a class="text-link" href="/biscuits-personnalises/">Explorer les possibilités</a></div>
+    <div id="temoignages"><p class="kicker">Avis clients</p><h2>Leurs moments gourmands</h2>
+    <p>Retrouvez les avis publiés sur la fiche Google de La Délicieuserie.</p><a class="text-link" href="https://www.google.com/maps?cid=7066990526774449785">Consulter les avis sur Google</a></div></section>
+    <section class="contact-band" id="contact"><div class="wrap band-inner"><div>
+    <p class="kicker">Un projet de biscuits</p><h2>Parlons de votre <em>occasion.</em></h2>
+    <p>Une idée, une date, une quantité approximative : Anne-Sophie vous répond avec un devis gratuit.</p></div>
+    <a class="button" href="/devis/">Demander un devis</a></div></section>
 </main>
-
-<footer class="site-footer">
-  <div class="container footer__grid">
-    <div>
-      <strong>La Délicieuserie</strong>
-      <p>Biscuiterie artisanale & personnalisée</p>
-    </div>
-    <div>
-      <p>&copy; <span id="current-year"></span> Tous droits réservés.</p>
-      <a href="#">Mentions légales</a>
-    </div>
-    <div class="footer__socials">
-      <a href="https://www.instagram.com/la_delicieuserie/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-<a href="https://www.linkedin.com/company/la-delicieuserie/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-    </div>
-  </div>
-</footer>
-
-<script src="script.js" defer></script>
-
-<!-- Facebook SDK (nécessaire pour l'embed fb-page) -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  if (window.FB && FB.XFBML && FB.XFBML.parse){ FB.XFBML.parse(); }
-});
-</script>
-<!-- Lightbox (zoom) -->
-<div class="lb" id="lb" aria-hidden="true">
-  <button class="lb__close" id="lbClose" aria-label="Fermer">×</button>
-  <img class="lb__img" id="lbImg" alt="">
-  <p class="lb__cap" id="lbCap" role="note"></p>
-</div>
-</body>
-</html>
+<footer class="foot"><div class="wrap">
+<div class="foot-grid"><div><a class="brand" href="/" aria-label="La Délicieuserie, accueil">
+    <img src="/assets/media/logo-96.webp" srcset="/assets/media/logo-96.webp 1x, /assets/media/logo-192.webp 2x" width="53" height="53" alt="">
+    <span>La Délicieuserie</span></a><p>Biscuiterie artisanale à Calais<br>Pas-de-Calais, France</p></div>
+<div><h2>À découvrir</h2><nav aria-label="Navigation de pied de page"><a href="/biscuits-personnalises/">Nos sablés</a> <a href="/biscuits-mariage/">Mariage</a> <a href="/biscuits-fetes-de-famille/">Fêtes de famille</a> <a href="/biscuits-entreprise/">Entreprises</a> <a href="/biscuiterie-calais/">L’atelier</a> <a href="/devis/">Demander un devis</a></nav></div>
+<div><h2>Joindre l’atelier</h2><a href="tel:+33617419761">06 17 41 97 61</a><a href="mailto:ladelicieuserie@gmail.com">ladelicieuserie@gmail.com</a></div>
+<div><h2>Suivre l’atelier</h2><a href="https://www.instagram.com/la_delicieuserie/">Instagram</a> <a href="https://www.facebook.com/p/La-D%C3%A9licieuserie-61555204563313/">Facebook</a> <a href="https://www.linkedin.com/company/la-delicieuserie/">LinkedIn</a> <a href="https://www.messenger.com/t/188037521066732">Messenger</a></div></div>
+<div class="foot-bottom"><span>© La Délicieuserie</span><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Données personnelles</a>
+<a href="/confidentialite/#cookies" data-cookies>Gérer les cookies</a></div>
+<p id="cookie-status" class="form-status" role="status"></p></div></footer>
+</body></html>

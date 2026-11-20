@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /source/
+Disallow: /tests/
+Disallow: /docs/
+Sitemap: https://www.ladelicieuserie.fr/sitemap.xml
