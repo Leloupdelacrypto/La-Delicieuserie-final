@@ -1,0 +1,28 @@
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Les redirections de domaine s'appliquent uniquement aux hôtes publics de l'atelier.
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?ladelicieuserie\.fr(?::[0-9]+)?$ [NC]
+  RewriteCond %{THE_REQUEST} "\s/+([^?\ ]*/)?index(?:%204|\x204)?\.html(?:[?\ ])" [NC]
+  RewriteRule ^(.*/)?index(?:\x204)?\.html$ https://www.ladelicieuserie.fr/$1 [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?ladelicieuserie\.fr(?::[0-9]+)?$ [NC]
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.ladelicieuserie\.fr$ [NC]
+  RewriteRule ^ https://www.ladelicieuserie.fr%{REQUEST_URI} [R=301,L]
+  RewriteRule ^(?:source|tests|docs|\.git)(?:/|$) - [R=404,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType font/woff2 "access plus 30 days"
+</IfModule>
+<IfModule mod_filter.c>
+  <IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/xml text/xml
+  </IfModule>
+</IfModule>

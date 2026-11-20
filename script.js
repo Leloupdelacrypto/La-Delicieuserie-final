@@ -1,375 +1,114 @@
+(() => {
+  "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const navToggle = document.querySelector('#navToggle');
-  const navLinks = document.querySelector('.nav-links');
-  const navAnchors = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
-
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    navAnchors.forEach((anchor) => {
-      anchor.addEventListener('click', () => {
-        if (window.innerWidth <= 960) {
-          navLinks.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 960) {
-        navLinks.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
+  const toggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector("#navigation");
+  toggle.hidden = false;
+  function closeMenu() {
+    toggle.setAttribute("aria-expanded", "false");
   }
-
-  const yearSpan = document.getElementById('current-year');
-  if (yearSpan) yearSpan.textContent = new Date().getFullYear().toString();
-
-  // Testimonials slider
-  const track = document.querySelector('.slider__track');
-  const slides = track ? Array.from(track.querySelectorAll('.testimonial')) : [];
-  const prevBtn = document.querySelector('[data-direction="prev"]');
-  const nextBtn = document.querySelector('[data-direction="next"]');
-  let currentIndex = 0;
-  let autoplayId;
-
-  const isDesktop = () => window.innerWidth > 960;
-
-  const updateSlider = () => {
-    if (!track || slides.length === 0) return;
-    const slide = slides[0];
-    const slideStyle = window.getComputedStyle(slide);
-    const slideWidth = slide.offsetWidth;
-    const gap = parseFloat(slideStyle.marginRight || '0');
-    const offset = (slideWidth + gap) * currentIndex;
-    track.style.transform = `translateX(-${offset}px)`;
-  };
-
-  const goToSlide = (index) => {
-    if (slides.length === 0) return;
-    const lastIndex = slides.length - 1;
-    if (index < 0) currentIndex = lastIndex;
-    else if (index > lastIndex) currentIndex = 0;
-    else currentIndex = index;
-    updateSlider();
-  };
-
-  const startAutoplay = () => {
-    if (!isDesktop() || slides.length <= 1) { stopAutoplay(); return; }
-    stopAutoplay();
-    autoplayId = window.setInterval(() => goToSlide(currentIndex + 1), 6000);
-  };
-
-  const stopAutoplay = () => {
-    if (autoplayId) { window.clearInterval(autoplayId); autoplayId = undefined; }
-  };
-
-  if (prevBtn && nextBtn && slides.length > 1) {
-    prevBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex - 1); });
-    nextBtn.addEventListener('click', () => { if (!isDesktop()) return; goToSlide(currentIndex + 1); });
-
-    if (track) {
-      track.addEventListener('mouseenter', stopAutoplay);
-      track.addEventListener('mouseleave', startAutoplay);
+  toggle.addEventListener("click", () => {
+    toggle.setAttribute("aria-expanded", String(toggle.getAttribute("aria-expanded") !== "true"));
+  });
+  menu.addEventListener("click", closeMenu);
+  document.addEventListener("click", event => {
+    if (!event.target.closest(".masthead")) closeMenu();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+      toggle.focus();
     }
-    prevBtn.addEventListener('mouseenter', stopAutoplay);
-    nextBtn.addEventListener('mouseenter', stopAutoplay);
-    prevBtn.addEventListener('mouseleave', startAutoplay);
-    nextBtn.addEventListener('mouseleave', startAutoplay);
+  });
+  window.matchMedia("(max-width: 1040px)").addEventListener("change", closeMenu);
 
-    window.addEventListener('resize', () => {
-      if (!isDesktop()) {
-        stopAutoplay(); currentIndex = 0;
-        if (track) track.style.transform = 'translateX(0)';
-      } else {
-        updateSlider(); startAutoplay();
-      }
-    });
-
-    updateSlider();
-    startAutoplay();
-  }
-
-  // Product slider
-  const prodTrack = document.querySelector('.prod-track');
-  const prodCards = prodTrack ? Array.from(prodTrack.querySelectorAll('.prod-card')) : [];
-  const btnPrev = document.querySelector('[data-prod="prev"]');
-  const btnNext = document.querySelector('[data-prod="next"]');
-  const dots = Array.from(document.querySelectorAll('.prod-dot'));
-  let pIndex = 0;
-
-  function updateProd() {
-    if (!prodTrack || prodCards.length === 0) return;
-    const slide = prodCards[0];
-    const style = window.getComputedStyle(slide);
-    const w = slide.offsetWidth;
-    const gap = parseFloat(style.marginRight || '0') + 12;
-    const offset = (w + gap) * pIndex;
-    prodTrack.style.transform = `translateX(-${offset}px)`;
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === pIndex)));
-  }
-  function gotoProd(i) {
-    if (prodCards.length === 0) return;
-    const last = prodCards.length - 1;
-    if (i < 0) pIndex = last; else if (i > last) pIndex = 0; else pIndex = i;
-    updateProd();
-  }
-  if (btnPrev && btnNext && prodCards.length) {
-    btnPrev.addEventListener('click', () => gotoProd(pIndex - 1));
-    btnNext.addEventListener('click', () => gotoProd(pIndex + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => gotoProd(i)));
-    window.addEventListener('resize', updateProd);
-    updateProd();
-  }
-});
-
-
-/* ===== Generic image carousels (Pros & Particuliers) ===== */
-(function(){
-  const carousels = document.querySelectorAll('.carousel');
-  carousels.forEach((root) => {
-    const track = root.querySelector('.carousel__track');
-    const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
-    const prev = root.querySelector('[data-dir="prev"]');
-    const next = root.querySelector('[data-dir="next"]');
-    const dots = root.querySelector('.carousel__dots');
+  const dialog = document.querySelector(".lightbox");
+  if (dialog && typeof dialog.showModal === "function") {
+    const links = [...document.querySelectorAll(".zoom-link")];
+    const photo = dialog.querySelector("img");
+    const caption = dialog.querySelector("figcaption");
     let index = 0;
-
-    const update = () => {
-      if (!track || !slides.length) return;
-      const width = slides[0].getBoundingClientRect().width;
-      track.style.transform = `translateX(-${index * width}px)`;
-      if (dots){
-        [...dots.children].forEach((el, i) => el.setAttribute('aria-current', i===index ? 'true' : 'false'));
-      }
-    };
-
-    const goto = (i) => {
-      const last = slides.length - 1;
-      if (i < 0) index = last;
-      else if (i > last) index = 0;
-      else index = i;
-      update();
-    };
-
-    if (dots){
-      dots.innerHTML = '';
-      slides.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.setAttribute('aria-label', 'Aller à l’image ' + (i+1));
-        b.addEventListener('click', () => goto(i));
-        dots.appendChild(b);
+    let opener;
+    function showPhoto(next) {
+      index = (next + links.length) % links.length;
+      const link = links[index];
+      photo.alt = link.querySelector("img").alt;
+      photo.src = link.href;
+      caption.textContent = link.dataset.caption + " · " + (index + 1) + " / " + links.length;
+    }
+    for (const [i, link] of links.entries()) {
+      link.addEventListener("click", event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = link;
+        showPhoto(i);
+        dialog.showModal();
       });
     }
-
-    prev && prev.addEventListener('click', () => goto(index - 1));
-    next && next.addEventListener('click', () => goto(index + 1));
-    window.addEventListener('resize', update);
-    update();
-  });
-})();
-
-
-/* v16 carousel independence: safer width and scoping */
-document.querySelectorAll('.carousel').forEach((root) => {
-  const viewport = root.querySelector('.carousel__viewport');
-  const track = root.querySelector('.carousel__track');
-  const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
-  const prev = root.querySelector('[data-dir="prev"]');
-  const next = root.querySelector('[data-dir="next"]');
-  const dots = root.querySelector('.carousel__dots');
-  let index = 0;
-
-  function slideWidth(){
-    return viewport ? viewport.clientWidth : (slides[0]?.getBoundingClientRect().width || 0);
-  }
-  function update(){
-    if (!track || !slides.length) return;
-    track.style.transform = `translateX(-${index * slideWidth()}px)`;
-    if (dots){
-      [...dots.children].forEach((el,i)=> el.setAttribute('aria-current', i===index ? 'true':'false'));
-    }
-  }
-  function goto(i){
-    const last = slides.length - 1;
-    if (i < 0) index = last;
-    else if (i > last) index = 0;
-    else index = i;
-    update();
-  }
-  if (dots){
-    dots.innerHTML = '';
-    slides.forEach((_,i)=>{
-      const b = document.createElement('button');
-      b.setAttribute('aria-label', 'Aller à l’image '+(i+1));
-      b.addEventListener('click', ()=> goto(i));
-      dots.appendChild(b);
+    dialog.querySelector(".lightbox-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => {
+      const button = event.target.closest("[data-step]");
+      if (button) showPhoto(index + Number(button.dataset.step));
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
     });
-  }
-  prev && prev.addEventListener('click', ()=> goto(index-1));
-  next && next.addEventListener('click', ()=> goto(index+1));
-  window.addEventListener('resize', update);
-  update();
-});
-
-
-/* v22: Facebook reviews (manual list, copy/paste from public page) */
-const fbReviews = [
-  { name: "Camille", text: "Des sablés magnifiques et délicieux ! Service impeccable, je recommande à 100%." },
-  { name: "Thomas", text: "Personnalisation parfaite pour notre événement pro, invités conquis. Merci La Délicieuserie !" },
-  { name: "Julie", text: "Un vrai coup de cœur. Équipe à l’écoute et biscuits sublimes." },
-  { name: "Alexandre", text: "Livraison rapide, résultat au-delà de nos attentes. On repassera commande !" }
-];
-
-(function injectFacebookReviews(){
-  const track = document.querySelector('.testimonials .slider__track');
-  if (!track) return;
-  track.innerHTML = '';
-  fbReviews.forEach(({name, text}) => {
-    const fig = document.createElement('figure');
-    fig.className = 'testimonial';
-    fig.innerHTML = `<blockquote>“${text}”</blockquote><figcaption>${name} – Avis Facebook</figcaption>`;
-    track.appendChild(fig);
-  });
-})();
-
-
-// v23.3-adjustMainPadding — ensure main content isn't hidden behind fixed navbar
-(function(){
-  function setPad(){
-    var nav = document.querySelector('.site-header .navbar') || document.querySelector('.navbar');
-    var main = document.querySelector('main#main, main');
-    if (!nav || !main) return;
-    var h = nav.getBoundingClientRect().height;
-    main.style.paddingTop = (h + 10) + 'px';
-  }
-  window.addEventListener('load', setPad);
-  window.addEventListener('resize', setPad);
-  document.addEventListener('DOMContentLoaded', setPad);
-})();
-
-/* v27 fix — Lightbox init */
-document.addEventListener('DOMContentLoaded', function(){
-  const lb = document.getElementById('lb');
-  const lbImg = document.getElementById('lbImg');
-  const lbCap = document.getElementById('lbCap');
-  const lbClose = document.getElementById('lbClose');
-  if (!lb || !lbImg) return;
-
-  const imgs = document.querySelectorAll('#sables img, .sables img, .carousel img');
-  function openLB(src, alt){
-    lbImg.src = src; lbImg.alt = alt || '';
-    if (lbCap) lbCap.textContent = alt || '';
-    lb.classList.add('is-open');
-    document.documentElement.style.overflow = 'hidden';
-    lb.setAttribute('aria-hidden', 'false');
-  }
-  function closeLB(){
-    lb.classList.remove('is-open');
-    document.documentElement.style.overflow = '';
-    lb.setAttribute('aria-hidden', 'true');
-    lbImg.src = '';
-  }
-
-  imgs.forEach(img => {
-    const w = img.naturalWidth || img.width || 0;
-    const h = img.naturalHeight || img.height || 0;
-    if (w < 80 && h < 80) return;
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openLB(img.currentSrc || img.src, img.alt);
-    });
-    img.setAttribute('tabindex', '0');
-    img.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLB(img.currentSrc || img.src, img.alt);
+    dialog.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPhoto(index + (event.key === "ArrowRight" ? 1 : -1));
       }
     });
-  });
-
-  lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
-  if (lbClose) lbClose.addEventListener('click', closeLB);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLB();
-  });
-});
-
-
-function renderReviewCard(rv){
-  const name  = escapeHtml(rv.author || 'Client Google');
-  const text  = escapeHtml(rv.text || '');
-  const date  = formatDate(rv.date) || rv.time || '';
-  const rating = clamp(parseInt(rv.rating, 10) || 0, 0, 5);
-  const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-  const starsHtml = stars.split('').map(ch => `<span class="${ch==='★'?'star--on':'star--off'}">${ch}</span>`).join('');
-  const link = rv.url ? `<div class="review-linkwrap"><a class="review-link" href="${escapeAttr(rv.url)}" target="_blank" rel="noopener">Voir l’avis</a></div>` : ``;
-  return `
-    <article class="review-card">
-      <div class="review-head">
-        <img class="review-avatar" src="assets/icons/user.svg" alt="">
-        <div>
-          <div class="review-author">${name}</div>
-          <div class="review-meta"><span class="stars">${starsHtml}</span>${date?` · ${date}`:''}</div>
-        </div>
-      </div>
-      <p class="review-text">${text}</p>
-      ${link}
-    </article>`;
-}
-function escapeAttr(s){return (s||'').replace(/["'<>&]/g, m=>({'"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;','&':'&amp;'}[m]));}
-
-/* ===== v27p25: Reviews Masonry from JSON with inline fallback ===== */
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('reviewsMasonry');
-  if (!container) return;
-  const starStr=(n)=>{let h="";for(let i=1;i<=5;i++){h+=`<span class="${i<=n?"star filled":"star empty"}">${i<=n?"★":"☆"}</span>`}return h};
-  async function fetchJson(){try{const r=await fetch('assets/data/reviews.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}catch(e){return null}}
-  function inlineJson(){try{const n=document.getElementById('reviewsData');if(!n)return null;const t=(n.textContent||'').trim();if(!t)return null;return JSON.parse(t)}catch(e){return null}}
-  let reviews=await fetchJson(); if(!Array.isArray(reviews)||reviews.length===0){const i=inlineJson(); if(Array.isArray(i)) reviews=i;}
-  if(!Array.isArray(reviews)) reviews=[];
-  container.innerHTML='';
-  reviews.forEach(({author,text,rating=5,date='',source='Google',url=''})=>{
-    const fig=document.createElement('figure'); fig.className='review-card';
-    const srcHtml = url?`<span class="review-source"><a href="${url}" target="_blank" rel="noopener">Voir l’avis sur ${source}</a></span>`:`<span class="review-source">${source}</span>`;
-    fig.innerHTML=`<blockquote>“${text}”</blockquote><figcaption class="review-meta"><span class="review-author">${author}</span><span class="review-stars" aria-label="${rating} sur 5">${starStr(Number(rating)||5)}</span>${date?`<time datetime="${date}">${date}</time>`:''}${srcHtml}</figcaption>`;
-    container.appendChild(fig);
-  });
-});
-
-
-/* v27p31: Force absolute _next URL for FormSubmit (works on GitHub Pages/subpaths) */
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.contact__form');
-  const next = form ? form.querySelector('input[name="_next"]') : null;
-  if (next) {
-    try {
-      next.value = new URL('thanks.html', window.location.href).toString();
-    } catch(e) {}
+    dialog.addEventListener("close", () => {
+      photo.removeAttribute("src");
+      if (opener) opener.focus();
+    });
   }
-});
 
-
-/* v27p32: Force absolute thanks URL for FormSubmit */
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.contact__form');
+  const form = document.querySelector("#quote-form");
   if (!form) return;
-  const abs = new URL('thanks.html', window.location.href).toString();
-  ['_next','next'].forEach(n => {
-    const el = form.querySelector(`input[name="${n}"]`);
-    if (el) el.value = abs;
+  const status = document.querySelector("#form-status");
+  const submit = form.querySelector('[type="submit"]');
+  const production = location.origin === "https://www.ladelicieuserie.fr";
+  const occasions = { entreprise: "Entreprise", famille: "Fête de famille", mariage: "Mariage" };
+  const occasion = new URLSearchParams(location.search).get("occasion");
+  if (Object.hasOwn(occasions, occasion)) form.elements.occasion.value = occasions[occasion];
+  if (!production) {
+    submit.textContent = "Tester la demande";
+    status.textContent = "Aperçu : ce formulaire de démonstration ne transmet aucune donnée.";
+  }
+
+  form.addEventListener("submit", async event => {
+    if (production && !window.fetch) return; // Le POST HTML reste utilisable sans amélioration JS.
+    event.preventDefault();
+    if (submit.disabled) return;
+    if (!production) {
+      status.textContent = "Les champs sont valides. Aucun message n’a été envoyé depuis cet aperçu.";
+      return;
+    }
+    if (form.elements._honey.value) {
+      status.textContent = "Impossible de traiter cette demande. Vous pouvez contacter directement l’atelier.";
+      return;
+    }
+    submit.disabled = true;
+    status.textContent = "Transmission de votre demande…";
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+    try {
+      const endpoint = new URL(form.action);
+      endpoint.pathname = "/ajax" + endpoint.pathname;
+      const response = await fetch(endpoint, {
+        method: "POST", body: new FormData(form), headers: { Accept: "application/json" },
+        credentials: "omit", referrerPolicy: "origin", signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || ![true, "true"].includes(result.success)) throw new Error("Envoi non confirmé");
+      location.assign("/thanks.html");
+    } catch {
+      submit.disabled = false;
+      status.textContent = "La transmission n’a pas pu être confirmée. Vos champs sont conservés. Joignez l’atelier au 06 17 41 97 61 ou à ladelicieuserie@gmail.com.";
+    } finally {
+      clearTimeout(timeout);
+    }
   });
-  try{
-    const url = new URL(form.action);
-    url.searchParams.set('next', abs);
-    url.searchParams.set('_next', abs);
-    form.action = url.toString();
-  }catch(e){}
-});
+})();
