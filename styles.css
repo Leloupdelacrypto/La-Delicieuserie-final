@@ -176,10 +176,10 @@ select { appearance: none; padding-right: 1.8rem; background-image: linear-gradi
   #navigation { width: 100%; justify-content: flex-start; }
   .menu-toggle:not([hidden]) { display: flex; gap: .55rem; align-items: center; font-weight: 620; }
   .menu-toggle i { width: 16px; height: 9px; border-block: 1.5px solid currentColor; }
-  .masthead:has(.menu-toggle:not([hidden])) #navigation { display: none; position: absolute; inset: 100% 0 auto; background: var(--cream); padding: .75rem 1.1rem 1rem; border: 1px solid var(--rule); border-radius: 0 0 .9rem .9rem; box-shadow: 0 1rem 1.5rem #203c5610; max-height: 72vh; overflow: auto; }
-  .masthead:has(.menu-toggle[aria-expanded="true"]) #navigation { display: grid; }
+  .js .masthead #navigation { display: none; position: absolute; inset: 100% 0 auto; background: var(--cream); padding: .75rem 1.1rem 1rem; border: 1px solid var(--rule); border-radius: 0 0 .9rem .9rem; box-shadow: 0 1rem 1.5rem #203c5610; max-height: 72vh; overflow: auto; }
+  .js .masthead:has(.menu-toggle[aria-expanded="true"]) #navigation { display: grid; }
   #navigation .nav-quote { width: fit-content; }
-  .masthead:has(.menu-toggle[hidden]) { position: static; }
+  html:not(.js) .masthead { position: static; }
   .foot-grid { grid-template-columns: 1fr 1fr; gap: 1.6rem; }
 }
 @media (max-width: 760px) {
